@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\client\ProgresController;
+use App\Http\Controllers\client\ProyekController;
 use App\Http\Controllers\UserController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +26,6 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/user', UserController::class);
+    Route::resource('client/proyek', ProyekController::class);
+    Route::resource('client/progres', ProgresController::class);
 });

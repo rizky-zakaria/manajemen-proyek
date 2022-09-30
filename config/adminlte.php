@@ -292,17 +292,19 @@ return [
     'menu' => [
         [
             'text' => 'Home',
-            'url'  => 'admin/pages',
+            'url'  => 'home',
             'icon' => 'fas fa-fw fa-home',
         ],
         [
             'text' => 'User',
             'url'  => 'user',
             'icon' => 'fas fa-fw fa-users',
+            'can' => 'isAdmin'
         ],
         [
             'text'    => 'Data Master',
             'icon'    => 'fas fa-fw fa-database',
+            'can' => 'isAdmin',
             'submenu' => [
                 [
                     'text' => 'Pembangunan Jalan',
@@ -321,6 +323,18 @@ return [
                     'url'  => '#',
                 ],
             ],
+        ],
+        [
+            'text' => 'Proyek',
+            'url'  => 'client/proyek',
+            'icon' => 'fas fa-fw fa-project-diagram',
+            'can' => 'isClient'
+        ],
+        [
+            'text' => 'Progres',
+            'url'  => 'client/progres',
+            'icon' => 'fas fa-fw fa-spinner',
+            'can' => 'isClient'
         ],
         [
             'text' => 'Profile',
