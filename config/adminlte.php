@@ -338,7 +338,7 @@ return [
         ],
         [
             'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user-cog',
         ],
     ],

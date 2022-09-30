@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\client\ProgresController;
 use App\Http\Controllers\client\ProyekController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('client/proyek', ProyekController::class);
     Route::resource('client/progres', ProgresController::class);
+    Route::resource('profile', ProfileController::class);
 });
