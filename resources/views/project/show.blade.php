@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="{{ url('client/proyek') }}" class="btn btn-light">Batal</a>
-                            <button class="btn btn-success float-right" type="submit">Simpan</button>
+                            {{-- <button class="btn btn-success float-right" type="submit">Simpan</button> --}}
                         </div>
                         <div class="card-body">
                             <div class="form-group">
@@ -21,7 +21,7 @@
                                         </span>
                                     </div>
                                     <input type="text" name="nama_proyek" class="form-control float-right"
-                                        id="reservation">
+                                        id="reservation" disabled value="{{ $data->nama_proyek }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -32,7 +32,8 @@
                                             <i class="fas fa-map-marker"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="lokasi" class="form-control float-right" id="reservation">
+                                    <input type="text" name="lokasi" class="form-control float-right" id="reservation"
+                                        value="{{ $data->lokasi }}" disabled>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -43,8 +44,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar"></i></span>
                                             </div>
-                                            <input type="date" name="waktu_mulai" class="form-control float-right"
-                                                id="reservationtime">
+                                            <input type="text" name="waktu_mulai" class="form-control float-right"
+                                                id="reservationtime" value="{{ $data->waktu_mulai }}" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -55,21 +56,22 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar"></i></span>
                                             </div>
-                                            <input type="date" name="waktu_selesai" class="form-control float-right"
-                                                id="reservationtime">
+                                            <input type="text" name="waktu_selesai" class="form-control float-right"
+                                                id="reservationtime" value="{{ $data->waktu_selesai }}" disabled>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>File Pengajuan</label>
-                                <div class="input-group is-invalid">
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="validatedInputGroupCustomFile">Pilih
-                                            File</label>
-                                        <input type="file" class="custom-file-input" id="validatedInputGroupCustomFile"
-                                            name="file" required>
+                                <label>Lokasi Proyek</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <a href="{{ url('uploads/files/', $data->file) }}" class="input-group-text">
+                                            <i class="fas fa-download"></i>
+                                        </a>
                                     </div>
+                                    <input type="text" name="file" class="form-control float-right" id="reservation"
+                                        value="{{ $data->file }}" disabled>
                                 </div>
                             </div>
                         </div>

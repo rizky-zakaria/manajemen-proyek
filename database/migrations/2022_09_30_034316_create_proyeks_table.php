@@ -15,6 +15,14 @@ class CreateProyeksTable extends Migration
     {
         Schema::create('proyeks', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('nama_proyek');
+            $table->string('lokasi');
+            $table->string('waktu_mulai');
+            $table->string('waktu_selesai');
+            $table->string('file');
+            $table->string('status');
+            $table->integer('jenis_id');
             $table->timestamps();
         });
     }

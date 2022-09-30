@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Progres extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'proyek_id', 'progres', 'persentase'
+    ];
 }
