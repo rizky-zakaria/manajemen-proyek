@@ -38,17 +38,21 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('proyek.show', $item->id) }}" class="btn btn-primary">
+                                            <a href="{{ route('proyek.show', $item->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('proyek.edit', $item->id) }}" class="btn btn-success">
+                                            <a href="{{ route('proyek.edit', $item->id) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             @if ($item->status == 'diajukan')
-                                                <button href="" class="btn btn-danger" data-toggle="modal"
+                                                {{-- <button href="" class="btn btn-danger" data-toggle="modal"
                                                     data-target="#exampleModal">
                                                     <i class="fas fa-trash"></i>
-                                                </button>
+                                                </button> --}}
+                                                <a href="javascript:;" data-toggle="modal"
+                                                    onclick="deleteData({{ $item->id }})" data-target="#DeleteModal"
+                                                    class="btn btn-sm btn-danger"><i class="fas fa-fw fa-trash"></i>
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>
@@ -70,28 +74,56 @@
         </div>
     </div>
 
+    <div id="DeleteModal" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog ">
+            <!-- Modal content-->
+            <form action="" id="deleteForm" method="post">
+                <div class="modal-content bg-danger">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <p class="text-center">Are you sure want to delete this data ?</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="" class="btn btn-outline-light" data-dismiss="modal"
+                            onclick="formSubmit()">Yes, Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Item</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Apakah anda yakin ingin menghapus item ini?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form action=" {{ route('proyek.destroy', $item->id) }} " method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">Hapus</button>
-                    </form>
+    {{-- @if ($data != [])
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah anda yakin ingin menghapus item ini?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <form action=" {{ route('proyek.destroy', $item->id) }} " method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Hapus</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif --}}
+    @include('layouts.script.delete')
 @endsection

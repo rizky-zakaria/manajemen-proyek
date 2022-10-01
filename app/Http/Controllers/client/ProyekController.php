@@ -15,11 +15,20 @@ class ProyekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        $this->modul = 'proyek';
+    }
+
     public function index()
     {
         $title = "";
+        $modul = $this->modul;
         $data = Proyek::where('user_id', Auth::user()->id)->get();
-        return view('project.index', compact('title', 'data'));
+        return view('project.index', compact('title', 'data', 'modul'));
     }
 
     /**
