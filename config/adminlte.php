@@ -308,23 +308,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Pembangunan Jalan',
-                    'url'  => '#',
+                    'url'  => 'data-master/pembangunan-jalan',
                 ],
                 [
                     'text' => 'Pembangunan Gedung',
-                    'url'  => '#',
+                    'url'  => 'data-master/pembangunan-gedung',
                 ],
                 [
                     'text' => 'Pembangunan Waduk',
-                    'url'  => '#',
+                    'url'  => 'data-master/pembangunan-waduk',
                 ],
                 [
                     'text' => 'Pembangunan Jembatan',
-                    'url'  => '#',
+                    'url'  => 'data-master/pembangunan-jembatan',
                 ],
                 [
                     'text' => 'Pembangunan Saluran',
-                    'url'  => '#',
+                    'url'  => 'data-master/pembangunan-saluran',
                 ],
             ],
         ],

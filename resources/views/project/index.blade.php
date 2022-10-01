@@ -33,26 +33,48 @@
                                                 <div class="badge badge-primary">{{ $item->status }}</div>
                                             @elseif ($item->status == 'diproses')
                                                 <div class="badge badge-warning">{{ $item->status }}</div>
+                                            @elseif ($item->status == 'ditolak')
+                                                <div class="badge badge-danger">{{ $item->status }}</div>
                                             @else
                                                 <div class="badge badge-success">{{ $item->status }}</div>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('proyek.show', $item->id) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route($modul . '.show', $item->id) }}"
+                                                class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('proyek.edit', $item->id) }}" class="btn btn-sm btn-success">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            @if ($item->status == 'diajukan')
-                                                {{-- <button href="" class="btn btn-danger" data-toggle="modal"
-                                                    data-target="#exampleModal">
-                                                    <i class="fas fa-trash"></i>
-                                                </button> --}}
-                                                <a href="javascript:;" data-toggle="modal"
-                                                    onclick="deleteData({{ $item->id }})" data-target="#DeleteModal"
-                                                    class="btn btn-sm btn-danger"><i class="fas fa-fw fa-trash"></i>
+                                            @if (Auth::user()->role == 'admin')
+                                                @if ($item->status == 'diajukan' || $item->status == 'ditolak')
+                                                    <a href="{{ url('data-master/' . $modul . '/accept', $item->id) }}"
+                                                        class="btn btn-sm btn-success">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                @endif
+                                                @if ($item->status == 'diajukan' || $item->status == 'diproses')
+                                                    <a href="{{ url('data-master/' . $modul . '/reject', $item->id) }}"
+                                                        class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-window-close"></i>
+                                                    </a>
+                                                @endif
+                                                @if ($item->status == 'diproses')
+                                                    <a href="{{ url('data-master/' . $modul . '/grapich', $item->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </a>
+                                                @endif
+                                            @else
+                                                <a href="{{ route('proyek.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-success">
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
+                                                @if ($item->status == 'diajukan')
+                                                    <a href="javascript:;" data-toggle="modal"
+                                                        onclick="deleteData({{ $item->id }})"
+                                                        data-target="#DeleteModal" class="btn btn-sm btn-danger"><i
+                                                            class="fas fa-fw fa-trash"></i>
+                                                    </a>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>
