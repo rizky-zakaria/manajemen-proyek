@@ -311,7 +311,7 @@ return [
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'Pembangunan Bangunan',
+                    'text' => 'Pembangunan Gedung',
                     'url'  => '#',
                 ],
                 [
@@ -320,6 +320,10 @@ return [
                 ],
                 [
                     'text' => 'Pembangunan Jembatan',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Pembangunan Saluran',
                     'url'  => '#',
                 ],
             ],

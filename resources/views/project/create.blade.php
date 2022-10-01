@@ -65,26 +65,25 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Example select</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option selected>Pilih Jenis Proyek</option>
-                                            <option value="">Pembangunan Jalan</option>
-                                            <option value="">Pembangunan Jembatan</option>
-                                            <option value="">Pembangunan Gedung</option>
-                                            <option value="">Pembangunan Saluran</option>
-                                            <option value="">Pembangunan Waduk</option>
+                                        <select class="form-control" name="jenis" id="exampleFormControlSelect1" required>
+                                            <option selected>Pilih ...</option>
+                                            <option value="Pembangunan Jalan">Pembangunan Jalan</option>
+                                            <option value="Pembangunan Jembatan">Pembangunan Jembatan</option>
+                                            <option value="Pembangunan Gedung">Pembangunan Gedung</option>
+                                            <option value="Pembangunan Saluran">Pembangunan Saluran</option>
+                                            <option value="Pembangunan Waduk">Pembangunan Waduk</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>File Pengajuan</label>
-                                            <div class="input-group is-invalid">
-                                                <div class="custom-file">
-                                                    <label class="custom-file-label"
-                                                        for="validatedInputGroupCustomFile">Pilih
-                                                        File</label>
-                                                    <input type="file" class="custom-file-input"
-                                                        id="validatedInputGroupCustomFile" name="file" required>
-                                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>File Pengajuan</label>
+                                        <div class="input-group is-invalid">
+                                            <div class="custom-file">
+                                                <label class="custom-file-label" for="validatedInputGroupCustomFile">Pilih
+                                                    File</label>
+                                                <input type="file" class="custom-file-input"
+                                                    id="validatedInputGroupCustomFile" name="file" required>
                                             </div>
                                         </div>
                                     </div>
