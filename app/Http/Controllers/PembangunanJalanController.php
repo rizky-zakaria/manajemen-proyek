@@ -54,8 +54,33 @@ class PembangunanJalanController extends Controller
             return redirect('data-master/pembangunan-jalan/form-grapich/' . $id);
         }
         $title = "Pembangunan Jalan";
-        // $data = 
-        return view('progres.index', compact('title', 'cek'));
+        $modul = $this->modul;
+        return view('progres.index', compact('title', 'cek', 'modul', 'id'));
+    }
+
+    public function editProgress($id)
+    {
+        $title = "";
+        $modul = $this->modul;
+        $cek = Progres::where('proyek_id', $id)->get();
+        return view('progres.edit_progress', compact('title', 'cek', 'modul', 'id'));
+    }
+
+    public function updateGrapich(Request $request)
+    {
+        $messages = [
+            'required' => 'Field wajib diisi',
+            'integer' => 'Field berisi angka'
+        ];
+        $id = 1;
+        for ($i = 0; $i < count($request->nilai); $i++) {
+            $post = Progres::find($request['id'][$i]);
+            $post->persentase = $request['nilai'][$i];
+            $post->update();
+        }
+
+        toast('Berhasil menambahkan data!', 'success');
+        return redirect('data-master/pembangunan-jalan');
     }
 
     public function formGrapich($id)

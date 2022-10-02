@@ -70,11 +70,38 @@
                                                     </a>
                                                 @endif
                                             @endif
-                                            @if ($item->status == 'diproses')
+                                            @if ($item->status == 'diproses' && Auth::user()->role != 'client')
                                                 <a href="{{ url('data-master/' . $modul . '/grapich', $item->id) }}"
                                                     class="btn btn-sm btn-warning">
                                                     <i class="fas fa-chart-line"></i>
                                                 </a>
+                                            @else
+                                                @if ($item->jenis = 'Pembangunan Jalan')
+                                                    <a href="{{ url('client/data-master/pembangunan-jalan/grapich', $item->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </a>
+                                                @elseif($item->jenis = 'Pembangunan Jembatan')
+                                                    <a href="{{ url('client/data-master/pembangunan-jembatan/grapich', $item->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </a>
+                                                @elseif($item->jenis = 'Pembangunan Waduk')
+                                                    <a href="{{ url('client/data-master/pembangunan-waduk/grapich', $item->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </a>
+                                                @elseif($item->jenis = 'Pembangunan Gedung')
+                                                    <a href="{{ url('client/data-master/pembangunan-gedung/grapich', $item->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </a>
+                                                @elseif($item->jenis = 'Pembangunan Saluran')
+                                                    <a href="{{ url('client/data-master/pembangunan-saluran/grapich', $item->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </a>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>

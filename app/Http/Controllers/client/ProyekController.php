@@ -28,6 +28,7 @@ class ProyekController extends Controller
         $title = "";
         $modul = $this->modul;
         $data = Proyek::where('user_id', Auth::user()->id)->get();
+        // dd($data);
         return view('project.index', compact('title', 'data', 'modul'));
     }
 

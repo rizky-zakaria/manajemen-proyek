@@ -44,6 +44,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('data-master/pembangunan-jalan/accept/{id}', [PembangunanJalanController::class, 'accept']);
     Route::get('data-master/pembangunan-jalan/reject/{id}', [PembangunanJalanController::class, 'reject']);
     Route::get('data-master/pembangunan-jalan/grapich/{id}', [PembangunanJalanController::class, 'grapich']);
+    Route::get('data-master/pembangunan-jalan/update/{id}', [PembangunanJalanController::class, 'editProgress']);
     Route::get('data-master/pembangunan-jalan/form-grapich/{id}', [PembangunanJalanController::class, 'formGrapich']);
     Route::post('data-master/pembangunan-jalan/store-grapich', [PembangunanJalanController::class, 'storeGrapich']);
+    Route::post('data-master/pembangunan-jalan/update-grapich', [PembangunanJalanController::class, 'updateGrapich']);
+
+
+    Route::get('client/data-master/pembangunan-jalan/grapich/{id}', [ProgresController::class, 'grapichJalan']);
 });

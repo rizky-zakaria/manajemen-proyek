@@ -11,4 +11,9 @@ class Progres extends Model
     protected $fillable = [
         'proyek_id', 'progres', 'persentase'
     ];
+
+    public function proyek()
+    {
+        return $this->belongsTo(Proyek::class);
+    }
 }

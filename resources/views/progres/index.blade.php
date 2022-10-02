@@ -6,8 +6,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-head mt-3 ml-3">
-                        <a class="btn btn-light">
-                            Kembali</a>
+                        {{-- <a  class="btn btn-light">
+                            Kembali</a> --}}
+                        @if (Auth::user()->role == 'admin')
+                            <a class="btn btn-primary float-right mr-3"
+                                href="{{ url('data-master/' . $modul . '/update/' . $id) }}">
+                                Update Progres</a>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="row">

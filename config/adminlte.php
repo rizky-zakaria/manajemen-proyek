@@ -334,12 +334,12 @@ return [
             'icon' => 'fas fa-fw fa-project-diagram',
             'can' => 'isClient'
         ],
-        [
-            'text' => 'Progres',
-            'url'  => 'client/progres',
-            'icon' => 'fas fa-fw fa-spinner',
-            'can' => 'isClient'
-        ],
+        // [
+        //     'text' => 'Progres',
+        //     'url'  => 'client/progres',
+        //     'icon' => 'fas fa-fw fa-spinner',
+        //     'can' => 'isClient'
+        // ],
         [
             'text' => 'Profile',
             'url'  => 'profile',

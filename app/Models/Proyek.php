@@ -12,4 +12,9 @@ class Proyek extends Model
     protected $fillable = [
         'nama', 'lokasi', 'waktu_mulai', 'waktu_selesai', 'file', 'status', 'user_id'
     ];
+
+    public function progres()
+    {
+        return $this->hasMany(Progres::class);
+    }
 }

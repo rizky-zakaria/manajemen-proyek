@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Progres;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProgresController extends Controller
 {
@@ -15,7 +18,24 @@ class ProgresController extends Controller
     public function index()
     {
         $title = "";
-        return view('progres.index', compact('title'));
+        $cek = Proyek::where('user_id', Auth::user()->id)->get();
+        dd($cek);
+        if ($cek == null) {
+            toast('Silahkan mengisi parameter penilaian terlebih dahulu!', 'error');
+        }
+        return view('progres.index', compact('title', 'cek'));
+    }
+
+    public function grapichJalan($id)
+    {
+        $cek = Progres::where('proyek_id', $id)->get();
+        if ($cek == null) {
+            toast('Silahkan mengisi parameter penilaian terlebih dahulu!', 'error');
+            return redirect('data-master/pembangunan-jalan/form-grapich/' . $id);
+        }
+        $title = "Pembangunan Jalan";
+        // $data = 
+        return view('progres.index', compact('title', 'cek'));
     }
 
     /**
