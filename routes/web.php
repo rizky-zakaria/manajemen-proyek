@@ -27,7 +27,7 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

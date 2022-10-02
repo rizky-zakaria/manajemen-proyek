@@ -163,6 +163,15 @@
                         </div>
                     </div>
                 </form>
+                <a class="btn btn-danger" href=" {{ route('logout') }} "
+                    onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    <span class="nav-link-text ms-1"><i class="fas fa-power-off"></i>
+                        Logout</span>
+                </a>
             </div>
         </div>
     </div>
