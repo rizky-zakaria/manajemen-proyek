@@ -49,7 +49,8 @@ class PembangunanJalanController extends Controller
     public function grapich($id)
     {
         $cek = Progres::where('proyek_id', $id)->get();
-        if ($cek == null) {
+        // dd();
+        if (!isset($cek[0]['proyek_id'])) {
             toast('Silahkan mengisi parameter penilaian terlebih dahulu!', 'error');
             return redirect('data-master/pembangunan-jalan/form-grapich/' . $id);
         }
