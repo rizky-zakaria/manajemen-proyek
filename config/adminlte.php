@@ -329,6 +329,39 @@ return [
             ],
         ],
         [
+            'text' => 'User',
+            'url'  => 'user',
+            'icon' => 'fas fa-fw fa-users',
+            'can' => 'isPetugas'
+        ],
+        [
+            'text'    => 'Data Master',
+            'icon'    => 'fas fa-fw fa-database',
+            'can' => 'isPetugas',
+            'submenu' => [
+                [
+                    'text' => 'Pembangunan Jalan',
+                    'url'  => 'data-master/pembangunan-jalan',
+                ],
+                [
+                    'text' => 'Pembangunan Gedung',
+                    'url'  => 'data-master/pembangunan-gedung',
+                ],
+                [
+                    'text' => 'Pembangunan Waduk',
+                    'url'  => 'data-master/pembangunan-waduk',
+                ],
+                [
+                    'text' => 'Pembangunan Jembatan',
+                    'url'  => 'data-master/pembangunan-jembatan',
+                ],
+                [
+                    'text' => 'Pembangunan Saluran',
+                    'url'  => 'data-master/pembangunan-saluran',
+                ],
+            ],
+        ],
+        [
             'text' => 'Proyek',
             'url'  => 'client/proyek',
             'icon' => 'fas fa-fw fa-project-diagram',
