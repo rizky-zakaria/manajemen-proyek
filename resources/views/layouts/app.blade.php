@@ -18,8 +18,8 @@
 {{-- @section('modal')
 
 @endsection --}}
-@include('sweetalert::alert')
 @section('js')
+    @include('sweetalert::alert')
     <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/js/dataTables.responsive.min.js') }}"></script>
@@ -48,6 +48,25 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#add").click(function(e) {
+                e.preventDefault();
+                $("#form-add").append(`
+                <div class="col-md-8 mb-3">
+                    <label for="validationDefault01">Parameter Penilaian</label>
+                    <input type="text" class="form-control" name="parameter[]" id="validationDefault01" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault02">Nilai Persentase</label>
+                    <input type="number" class="form-control" name="nilai[]"  id="validationDefault02" required>
+                </div>
+                <div class="col-md-1" style="margin-top: 31px">
+                </div>
+                `);
             });
         });
     </script>

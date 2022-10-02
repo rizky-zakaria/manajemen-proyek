@@ -49,17 +49,42 @@ class PembangunanJalanController extends Controller
     public function grapich($id)
     {
         $cek = Progres::where('proyek_id', $id)->get();
-        if ($cek) {
+        if ($cek == null) {
+            toast('Silahkan mengisi parameter penilaian terlebih dahulu!', 'error');
             return redirect('data-master/pembangunan-jalan/form-grapich/' . $id);
         }
-
-        return view('progres.index');
+        $title = "Pembangunan Jalan";
+        // $data = 
+        return view('progres.index', compact('title', 'cek'));
     }
 
     public function formGrapich($id)
     {
         $title = "";
-        return view('progres.form', compact('title'));
+        return view('progres.form', compact('title', 'id'));
+    }
+
+    public function storeGrapich(Request $request)
+    {
+        $messages = [
+            'required' => 'Field wajib diisi',
+            'integer' => 'Field berisi angka'
+        ];
+        // $this->validate($request, [
+        //     'parameter[]' => ['required'],
+        //     'nilai[]' => ['required', 'integer']
+        // ], $messages);
+
+        for ($i = 0; $i < count($request->nilai); $i++) {
+            $post = new Progres;
+            $post->proyek_id = $request->id;
+            $post->progres = $request['parameter'][$i];
+            $post->persentase = $request['nilai'][$i];
+            $post->save();
+        }
+
+        toast('Berhasil menambahkan data!', 'success');
+        return redirect('data-master/pembangunan-jalan');
     }
 
     /**

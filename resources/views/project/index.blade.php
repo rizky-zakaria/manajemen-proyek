@@ -57,12 +57,6 @@
                                                         <i class="fas fa-window-close"></i>
                                                     </a>
                                                 @endif
-                                                @if ($item->status == 'diproses')
-                                                    <a href="{{ url('data-master/' . $modul . '/grapich', $item->id) }}"
-                                                        class="btn btn-sm btn-warning">
-                                                        <i class="fas fa-chart-line"></i>
-                                                    </a>
-                                                @endif
                                             @else
                                                 <a href="{{ route('proyek.edit', $item->id) }}"
                                                     class="btn btn-sm btn-success">
@@ -75,6 +69,12 @@
                                                             class="fas fa-fw fa-trash"></i>
                                                     </a>
                                                 @endif
+                                            @endif
+                                            @if ($item->status == 'diproses')
+                                                <a href="{{ url('data-master/' . $modul . '/grapich', $item->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-chart-line"></i>
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>
