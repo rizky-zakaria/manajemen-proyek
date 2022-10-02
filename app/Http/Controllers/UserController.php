@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Daftar Pengguna";
+        return view('user.create', compact('title'));
     }
 
     /**
@@ -37,7 +40,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => 'Field ini tidak boleh kosong',
+            'confirmed' => 'Password tidak sama',
+            'email' => 'Masukan email yang  valid',
+            'string' => 'Masukan data yang valid',
+            'max' => 'Tidak boleh melebihi 255 karakter',
+            'unique' => 'Email sudah digunakan'
+        ];
+
+        $this->validate($request, [
+            'nama' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required']
+        ], $messages);
+
+        $post = new User;
+        $post->name = $request->nama;
+        $post->email = $request->email;
+        $post->password = Hash::make($request->password);
+        $post->role = $request->role;
+        $post->save();
+
+        toast('Berhasil menambahkan data!', 'success');
+        return redirect(url('user'));
     }
 
     /**

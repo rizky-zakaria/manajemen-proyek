@@ -8,7 +8,7 @@
                     <div class="card-head mt-3 ml-3">
                         {{-- <a  class="btn btn-light">
                             Kembali</a> --}}
-                        @if (Auth::user()->role == 'admin')
+                        @if (Auth::user()->role == 'petugas')
                             <a class="btn btn-primary float-right mr-3"
                                 href="{{ url('data-master/' . $modul . '/update/' . $id) }}">
                                 Update Progres</a>

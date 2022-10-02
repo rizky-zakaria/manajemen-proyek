@@ -5,6 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
+                    <div class="card-header">
+                        <a href="{{ route('user.create') }}" class="btn btn-primary float-right">Tambah</a>
+                    </div>
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -23,13 +26,13 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>
-                                            <a href="">
+                                            <a href="" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="">
+                                            <a href="" class="btn btn-sm btn-success">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="">
+                                            <a href="" class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
