@@ -14,13 +14,12 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
 @stop
-
 {{-- @section('modal')
 
 @endsection --}}
 @section('js')
     @include('sweetalert::alert')
-    {{-- <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script> --}}
+    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/js/responsive.bootstrap4.min.js') }}"></script>
