@@ -17,9 +17,9 @@
                             @csrf
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between col-12">
                                         <a href="{{ url('user') }}" class="btn btn-light">Batal</a>
-                                        <button class="btn btn-success" type="submit">Simpan</button>
+                                        <button class="btn btn-success float-right" type="submit">Simpan</button>
                                     </div>
                                 </div>
                                 <div class="card-body">
