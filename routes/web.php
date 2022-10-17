@@ -1,15 +1,11 @@
 <?php
 
-use App\Http\Controllers\client\ProgresController;
-use App\Http\Controllers\client\ProyekController;
-use App\Http\Controllers\PembangunanGedungController;
-use App\Http\Controllers\PembangunanJalanController;
-use App\Http\Controllers\PembangunanJembatanController;
-use App\Http\Controllers\PembangunanSaluranController;
-use App\Http\Controllers\PembangunanWadukController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\JenisProyekController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\UserController;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,24 +27,10 @@ Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('/user', UserController::class);
-    Route::resource('client/proyek', ProyekController::class);
-    Route::resource('client/progres', ProgresController::class);
+    Route::resource('data-master/user', UserController::class);
+    Route::resource('data-master/jenis-proyek', JenisProyekController::class);
+    Route::resource('data-master/proyek', ProyekController::class);
+    Route::resource('data-master/dokumen', DocumentController::class);
+    Route::resource('data-master/progress', ProgressController::class);
     Route::resource('profile', ProfileController::class);
-    Route::resource('data-master/pembangunan-jalan', PembangunanJalanController::class);
-    Route::resource('data-master/pembangunan-waduk', PembangunanWadukController::class);
-    Route::resource('date-master/pembangunan-jembatan', PembangunanJembatanController::class);
-    Route::resource('data-master/pembangunan-gedung', PembangunanGedungController::class);
-    Route::resource('data-master/pembangunan-saluran', PembangunanSaluranController::class);
-
-    Route::get('data-master/pembangunan-jalan/accept/{id}', [PembangunanJalanController::class, 'accept']);
-    Route::get('data-master/pembangunan-jalan/reject/{id}', [PembangunanJalanController::class, 'reject']);
-    Route::get('data-master/pembangunan-jalan/grapich/{id}', [PembangunanJalanController::class, 'grapich']);
-    Route::get('data-master/pembangunan-jalan/update/{id}', [PembangunanJalanController::class, 'editProgress']);
-    Route::get('data-master/pembangunan-jalan/form-grapich/{id}', [PembangunanJalanController::class, 'formGrapich']);
-    Route::post('data-master/pembangunan-jalan/store-grapich', [PembangunanJalanController::class, 'storeGrapich']);
-    Route::post('data-master/pembangunan-jalan/update-grapich', [PembangunanJalanController::class, 'updateGrapich']);
-
-
-    Route::get('client/data-master/pembangunan-jalan/grapich/{id}', [ProgresController::class, 'grapichJalan']);
 });

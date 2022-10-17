@@ -14,11 +14,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->modul = 'user';
+    }
+
     public function index()
     {
+        $modul = $this->modul;
         $title = "Daftar Pengguna";
         $data = User::where('role', '!=', 'admin')->get();
-        return view('user.index', compact('data', 'title'));
+        return view('user.index', compact('data', 'title', 'modul'));
     }
 
     /**
