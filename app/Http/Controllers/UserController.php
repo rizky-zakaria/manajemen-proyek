@@ -36,7 +36,8 @@ class UserController extends Controller
     public function create()
     {
         $title = "Daftar Pengguna";
-        return view('user.create', compact('title'));
+        $modul = $this->modul;
+        return view('user.create', compact('title', 'modul'));
     }
 
     /**
