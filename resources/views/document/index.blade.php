@@ -35,9 +35,12 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>
-                                                        <a href="{{ asset('') }}">{{ $item->nama_proyek }}</a>
+                                                        {{ $item->nama_proyek }}
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <a href="{{ asset('uploads/files/' . $item->nama_proyek) }}"><i
+                                                                class="fas fa-eye"></i></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
