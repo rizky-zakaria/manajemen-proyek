@@ -38,7 +38,7 @@
                                                         {{ $item->nama_proyek }}
                                                     </td>
                                                     <td>
-                                                        <a href="{{ asset('uploads/files/' . $item->nama_proyek) }}"><i
+                                                        <a href="{{ asset('uploads/files/' . $item->file) }}"><i
                                                                 class="fas fa-eye"></i></a>
                                                     </td>
                                                 </tr>
