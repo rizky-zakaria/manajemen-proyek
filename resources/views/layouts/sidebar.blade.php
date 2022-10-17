@@ -39,8 +39,20 @@
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-danger btn-lg btn-block btn-icon-split">
+            {{-- <a href="https://getstisla.com/docs" class="btn btn-danger btn-lg btn-block btn-icon-split">
                 <i class="fas fa-power-off"></i> Logout
+            </a> --}}
+            <a class="btn btn-danger btn-lg btn-block btn-icon-split" href=" {{ route('logout') }} "
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+                <div
+                    class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-power-off text-light text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Logout</span>
             </a>
         </div>
     </aside>
