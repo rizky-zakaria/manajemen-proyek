@@ -38,8 +38,8 @@
                                                         {{ $item->nama_proyek }}
                                                     </td>
                                                     <td>
-                                                        <a href="{{ asset('uploads/files/' . $item->file) }}"><i
-                                                                class="fas fa-eye"></i></a>
+                                                        <a href="{{ asset('uploads/files/' . $item->file) }}"
+                                                            class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
