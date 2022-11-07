@@ -22,4 +22,9 @@ class Proyek extends Model
     {
         return $this->hasMany(Dokumen::class);
     }
+
+    public function historyprogres()
+    {
+        return $this->hasMany(HistoryProgres::class);
+    }
 }

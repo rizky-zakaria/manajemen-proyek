@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Biodata::class);
     }
+
+    public function historyprogres()
+    {
+        return $this->hasMany(HistoryProgres::class);
+    }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoryProgres;
 use App\Models\Progres;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProgressController extends Controller
 {
@@ -69,7 +72,10 @@ class ProgressController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Progres::find($id);
+        $history = HistoryProgres::where('proyek_id', $data->proyek_id)->get();
+        $modul = $this->modul;
+        return view('progres.show', compact('data', 'modul', 'history'));
     }
 
     /**
@@ -80,7 +86,9 @@ class ProgressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Progres::find($id);
+        $modul = $this->modul;
+        return view('progres.edit', compact('data', 'modul'));
     }
 
     /**
@@ -92,7 +100,43 @@ class ProgressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->hasFile('file')) {
+
+            $post = Progres::find($id);
+            if ($request->persentase <= $post->persentase) {
+                toast('Nilai persentase tidak boleh kurang atau sama dengan sudah ada!', 'error');
+                return redirect(route($this->modul . '.index'));
+            }
+            $post->persentase = $request->persentase;
+            $post->progres = 'proses';
+            $post->update();
+
+            $uploadPath = public_path('uploads/files');
+            if (!File::isDirectory($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true, true);
+            }
+
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $rename = 'file_' . date('YmdHis') . '.' . $extension;
+
+            if ($file->move($uploadPath, $rename)) {
+                $history = new HistoryProgres;
+                $history->proyek_id = $post->proyek_id;
+                $history->user_id = Auth::user()->id;
+                $history->bukti = $rename;
+                $history->keterangan = $request->keterangan;
+                $history->save();
+                // dd($post);
+                toast('Berhasil menambahkan data!', 'success');
+                return redirect(route($this->modul . '.index'));
+            }
+            toast('Gagal menambahkan data!', 'error');
+            return redirect(route($this->modul . '.index'));
+        } else {
+            toast('Gagal menambahkan data!', 'error');
+            return redirect(route($this->modul . '.index'));
+        }
     }
 
     /**

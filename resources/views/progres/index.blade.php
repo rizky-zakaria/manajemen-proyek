@@ -61,15 +61,17 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        @if ($item->persentase <= 100)
+                                                        @if ($item->persentase < 100)
                                                             on proses
+                                                        @else
+                                                            done
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="" class="btn btn-primary btn-sm"><i
-                                                                class="fas fa-eye"></i></a>
+                                                        <a href="{{ url('data-master/progress/' . $item->id) }}"
+                                                            class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                                         @if (Auth::user()->role === 'petugas')
-                                                            <a href="{{ $modul . '.edit' }}"
+                                                            <a href="{{ url('data-master/progress/' . $item->id . '/edit') }}"
                                                                 class="btn btn-sm btn-success"><i
                                                                     class="fas fa-edit"></i></a>
                                                         @endif
