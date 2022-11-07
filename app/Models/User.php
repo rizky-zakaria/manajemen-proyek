@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(HistoryProgres::class);
     }
+
+    public function proyek()
+    {
+        return $this->hasMany(Proyek::class);
+    }
 }

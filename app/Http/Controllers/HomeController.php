@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
+use App\Models\JenisProyek;
+use App\Models\Proyek;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $title = "Home";
-        return view('home', compact('title'));
+        $dokumen = count(Dokumen::all());
+        $user = count(User::all());
+        $jenis = count(JenisProyek::all());
+        $proyek = count(Proyek::all());
+        return view('home', compact('title', 'dokumen', 'user', 'proyek', 'jenis'));
     }
 }

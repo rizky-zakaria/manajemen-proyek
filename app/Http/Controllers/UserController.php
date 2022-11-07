@@ -100,7 +100,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $modul = $this->modul;
+        $data = User::find($id);
+        return view('user.show', compact('data', 'modul'));
     }
 
     /**
@@ -111,7 +113,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::find($id);
+        $modul = $this->modul;
+        return view('user.edit', compact('data', 'modul'));
     }
 
     /**
@@ -123,7 +127,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = User::find($id);
+        $post->name = $request->nama;
+        $post->email = $request->email;
+        $post->password = Hash::make($request->password);
+        $post->update();
+        // dd($post);
+
+        $biodata = Biodata::where('user_id', $post->id)->first();
+        $biodata->alamat = $request->alamat;
+        $biodata->nik = $request->nik;
+        $biodata->telepon = $request->telepon;
+        $biodata->agama = $request->agama;
+        $biodata->jenis_kelamin = $request->jk;
+        $biodata->ttl = $request->ttl;
+        $biodata->update();
+
+        if ($biodata) {
+            toast('Berhasil mengubah data!', 'success');
+            return redirect(route($this->modul . '.index'));
+        }
+        toast('Gagal mengubah data!', 'error');
+        return redirect(route($this->modul . '.index'));
     }
 
     /**

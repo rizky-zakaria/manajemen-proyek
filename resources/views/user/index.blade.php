@@ -41,11 +41,13 @@
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->email }}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-sm btn-primary">
+                                                        <a href="{{ route($modul . '.show', $item->id) }}"
+                                                            class="btn btn-sm btn-primary">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
                                                         @if (Auth::user()->role === 'admin')
-                                                            <a href="" class="btn btn-sm btn-success">
+                                                            <a href="{{ route($modul . '.edit', $item->id) }}"
+                                                                class="btn btn-sm btn-success">
                                                                 <i class="fas fa-edit"></i>
                                                             </a>
                                                             <a href="javascript:;" data-toggle="modal"

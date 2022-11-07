@@ -50,11 +50,11 @@ class JenisProyekController extends Controller
         $post->save();
         // dd($post);
         if ($post) {
-            toast('success', 'Berhasil menambahkan data');
-            return redirect(route('jenis-proyek.index'));
+            toast('Berhasil mengubah data!', 'success');
+            return redirect(route($this->modul . '.index'));
         } else {
-            toast('error', 'Gagal menambahkan data');
-            return redirect(route('jenis-proyek.index'));
+            toast('Gagal mengubah data!', 'error');
+            return redirect(route($this->modul . '.index'));
         }
     }
 
@@ -77,7 +77,9 @@ class JenisProyekController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modul = $this->modul;
+        $data = JenisProyek::find($id);
+        return view('jenisproject.edit', compact('modul', 'data'));
     }
 
     /**
@@ -89,7 +91,17 @@ class JenisProyekController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = JenisProyek::find($id);
+        $post->jenis = $request->jenis;
+        $post->bidang = $request->bidang;
+        $post->update();
+
+        if ($post) {
+            toast('Berhasil mengubah data!', 'success');
+            return redirect(route($this->modul . '.index'));
+        }
+        toast('Gagal mengubah data!', 'error');
+        return redirect(route($this->modul . '.index'));
     }
 
     /**
