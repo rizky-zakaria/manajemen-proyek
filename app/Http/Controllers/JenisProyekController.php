@@ -36,7 +36,18 @@ class JenisProyekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new JenisProyek;
+        $post->jenis = $request->jenis;
+        $post->bidang = $request->bidang;
+        $post->save();
+        // dd($post);
+        if ($post) {
+            toast('success', 'Berhasil menambahkan data');
+            return redirect(route('jenis-proyek.index'));
+        } else {
+            toast('error', 'Gagal menambahkan data');
+            return redirect(route('jenis-proyek.index'));
+        }
     }
 
     /**

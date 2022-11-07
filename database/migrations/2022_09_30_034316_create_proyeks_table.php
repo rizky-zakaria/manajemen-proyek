@@ -22,7 +22,8 @@ class CreateProyeksTable extends Migration
             $table->string('waktu_selesai');
             $table->string('file');
             $table->string('status');
-            $table->string('jenis');
+            $table->integer('anggaran');
+            // $table->string('jenis');s
             $table->timestamps();
         });
     }

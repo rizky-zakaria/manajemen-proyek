@@ -9,6 +9,11 @@ class Biodata extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'alamat', 'desa', 'kecamatan', 'kabupaten', 'provinsi'
+        'user_id', 'alamat', 'nik', 'telepon', 'agama', 'jenis_kelamin', 'ttl'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
+use App\Models\JenisProyek;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class DocumentController extends Controller
 {
@@ -20,7 +23,7 @@ class DocumentController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        $data = Proyek::all();
+        $data = Dokumen::all();
         return view('document.index', compact('modul', 'data'));
     }
 
@@ -31,7 +34,10 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        $modul = $this->modul;
+        $data = Proyek::all();
+        $jenis = JenisProyek::all();
+        return view('document.create', compact('modul', 'data', 'jenis'));
     }
 
     /**
@@ -42,7 +48,46 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => 'Field wajib diisi'
+        ];
+
+        $this->validate($request, [
+            'proyek_id' => ['required'],
+            'jenis_id' => ['required'],
+            'jenis_dokumen' => ['required'],
+            'file' => ['required']
+        ], $messages);
+
+        if ($request->hasFile('file')) {
+            // dd($request);
+            $uploadPath = public_path('uploads/files');
+            if (!File::isDirectory($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true, true);
+            }
+
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $rename = 'file_' . date('YmdHis') . '.' . $extension;
+
+            if ($file->move($uploadPath, $rename)) {
+                $post = new Dokumen;
+                $post->proyek_id = $request->proyek_id;
+                $post->jenis_id = $request->jenis_id;
+                $post->jenis_dokumen = $request->jenis_dokumen;
+                $post->dokumen = $rename;
+                $post->save();
+                // dd($post);
+                toast('success', 'Berhasil menambahkan data!');
+                return redirect(route($this->modul . '.index'));
+            }
+            toast('error', 'Gagal menambahkan data!');
+            return redirect(route($this->modul . '.index'));
+        } else {
+            dd("gagal");
+        }
+        toast('error', 'Gagal menambahkan data!');
+        return redirect(route($this->modul . '.index'));
     }
 
     /**

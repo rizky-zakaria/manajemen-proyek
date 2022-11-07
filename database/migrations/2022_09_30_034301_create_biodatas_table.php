@@ -17,10 +17,11 @@ class CreateBiodatasTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->text('alamat');
-            $table->string('desa');
-            $table->string('kecamatan');
-            $table->string('kabupaten');
-            $table->string('provinsi');
+            $table->string('nik');
+            $table->string('telepon');
+            $table->string('agama');
+            $table->string('jenis_kelamin');
+            $table->string('ttl');
             $table->timestamps();
         });
     }

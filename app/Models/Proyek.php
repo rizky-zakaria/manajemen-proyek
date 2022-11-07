@@ -10,11 +10,16 @@ class Proyek extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'lokasi', 'waktu_mulai', 'waktu_selesai', 'file', 'status', 'user_id'
+        'nama', 'lokasi', 'waktu_mulai', 'waktu_selesai', 'file', 'status', 'user_id', 'anggaran'
     ];
 
     public function progres()
     {
         return $this->hasMany(Progres::class);
+    }
+
+    public function dokumen()
+    {
+        return $this->hasMany(Dokumen::class);
     }
 }

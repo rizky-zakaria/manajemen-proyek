@@ -55,6 +55,97 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label>Tempat / Tanggal Lahir</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-cookie"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="ttl"
+                                                class="form-control float-right @error('ttl') is-invalid @enderror"
+                                                id="reservation" placeholder="Gorontalo / 01 Januari 1990">
+                                        </div>
+                                        @error('ttl')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>NIK</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                    </div>
+                                                    <input type="number" name="nik"
+                                                        class="form-control float-right @error('nik')
+                                                is-invalid
+                                            @enderror"
+                                                        id="reservationtime">
+                                                </div>
+                                                @error('nik')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Telepon</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                    </div>
+                                                    <input type="text" name="telepon"
+                                                        class="form-control float-right @error('telepon')
+                                                is-invalid
+                                            @enderror"
+                                                        id="reservationtime">
+                                                </div>
+                                                @error('telepon')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Agama</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-ankh"></i></span>
+                                                    </div>
+                                                    <input type="text" name="agama"
+                                                        class="form-control float-right @error('agama')
+                                                is-invalid
+                                            @enderror"
+                                                        id="reservationtime">
+                                                </div>
+                                                @error('agama')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Jenis Kelamin </label>
+                                                <select name="jk"
+                                                    class="form-control @error('jk')
+                                                    is-invalid
+                                                @enderror"
+                                                    id="exampleFormControlSelect1">
+                                                    <option selected>Pilih Jenis Kelamin</option>
+                                                    <option value="pria">Pria</option>
+                                                    <option value="wanita">Wanita</option>
+                                                </select>
+                                            </div>
+                                            @error('jk')
+                                                <span class="text-danger text-sm">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -90,15 +181,15 @@
                                         </div>
                                     </div>
                                     <fieldset class="form-group row">
-                                        <legend class="col-form-label col-sm-2 float-sm-left pt-0">Role</legend>
+                                        <legend class="col-form-label col-sm-4 float-sm-left pt-0">Role</legend>
                                         <div class="col-sm-10">
                                             <div class="form-check">
                                                 <input
                                                     class="form-check-input @error('role')
                                             is-invalid
                                         @enderror"
-                                                    type="radio" name="role" id="gridRadios1" value="petugas">
-                                                <label class="form-check-label" for="gridRadios1">
+                                                    type="radio" name="role" id="petugas" value="petugas">
+                                                <label class="form-check-label" for="petugas">
                                                     Petugas Lapangan
                                                 </label>
                                             </div>
@@ -107,9 +198,9 @@
                                                     class="form-check-input @error('role')
                                             is-invalid
                                         @enderror"
-                                                    type="radio" name="role" id="gridRadios1" value="client">
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    User Client
+                                                    type="radio" name="role" id="bos" value="bos">
+                                                <label class="form-check-label" for="bos">
+                                                    Kepala
                                                 </label>
                                             </div>
                                             @error('role')
@@ -117,7 +208,17 @@
                                             @enderror
                                         </div>
                                     </fieldset>
-
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Alamat</label>
+                                        <textarea name="alamat"
+                                            class="form-control @error('alamat')
+                                            is-invalid
+                                        @enderror"
+                                            id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        @error('role')
+                                            <span class="text-sm text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </form>

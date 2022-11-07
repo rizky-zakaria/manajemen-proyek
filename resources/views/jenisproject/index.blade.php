@@ -14,25 +14,28 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jenis Proyek</label>
-                                    <input type="text" class="form-control">
+                        <form action="{{ route('jenis-proyek.store') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Jenis Proyek</label>
+                                        <input type="text" class="form-control" name="jenis">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bidang</label>
+                                        <select class="form-control" name="bidang">
+                                            <option value="infrastruktur">Infrastruktur</option>
+                                            <option value="layanan">Layanan Publik</option>
+                                            <option value="gedung">Gedung</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Bidang</label>
-                                    <select class="form-control">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-success float-right">simpan</button>
+                            <button class="btn btn-success float-right">simpan</button>
+                        </form>
                     </div>
                 </div>
                 <div class="row">
@@ -53,7 +56,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            <?php $no = 1; ?>
+                                            @foreach ($data as $item)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $item->jenis }}</td>
+                                                    <td>{{ $item->bidang }}</td>
+                                                    <td>
+                                                        <a href="" class="btn btn-sm btn-success"><i
+                                                                class="fas fa-edit"></i></a>
+                                                        <a href="" class="btn btn-sm btn-danger"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>

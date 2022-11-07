@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biodata;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
@@ -54,14 +55,20 @@ class UserController extends Controller
             'email' => 'Masukan email yang  valid',
             'string' => 'Masukan data yang valid',
             'max' => 'Tidak boleh melebihi 255 karakter',
-            'unique' => 'Email sudah digunakan'
+            'unique' => 'Email sudah digunakan',
+            'integer' => 'Harus berisi data angka'
         ];
 
         $this->validate($request, [
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required']
+            'role' => ['required'],
+            'ttl' => ['required'],
+            'nik' => ['required', 'integer'],
+            'telepon' => ['required', 'integer'],
+            'agama' => ['required'],
+            'jk' => ['required']
         ], $messages);
 
         $post = new User;
@@ -71,8 +78,18 @@ class UserController extends Controller
         $post->role = $request->role;
         $post->save();
 
+        $biodata = new Biodata;
+        $biodata->user_id = $post->id;
+        $biodata->alamat = $request->alamat;
+        $biodata->nik = $request->nik;
+        $biodata->telepon = $request->telepon;
+        $biodata->agama = $request->agama;
+        $biodata->jenis_kelamin = $request->jk;
+        $biodata->ttl = $request->ttl;
+        $biodata->save();
+
         toast('Berhasil menambahkan data!', 'success');
-        return redirect(url('user'));
+        return redirect(route('user.index'));
     }
 
     /**

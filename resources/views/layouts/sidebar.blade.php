@@ -14,28 +14,38 @@
                 <a href="{{ url('home') }}" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Data Master </li>
-            <li><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data
-                        Pegawai</span></a>
-            </li>
-            <li>
-                <a class="nav-link" href="{{ route('jenis-proyek.index') }}"><i class="fas fa-project-diagram"></i>
-                    <span>Data Jenis
-                        Proyek</span>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="{{ route('proyek.index') }}"><i class="fas fa-cogs"></i> <span>Data
-                        Proyek</span>
-                </a>
-            </li>
+            @if (Auth::user()->role !== 'petugas')
+                <li>
+                    <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data
+                            Pegawai</span></a>
+                </li>
+            @endif
+            @if (Auth::user()->role === 'admin')
+                <li>
+                    <a class="nav-link" href="{{ route('jenis-proyek.index') }}"><i class="fas fa-project-diagram"></i>
+                        <span>Data Jenis
+                            Proyek</span>
+                    </a>
+                </li>
+            @endif
+            @if (Auth::user()->role !== 'petugas')
+                <li>
+                    <a class="nav-link" href="{{ route('proyek.index') }}"><i class="fas fa-cogs"></i> <span>Data
+                            Proyek</span>
+                    </a>
+                </li>
+            @endif
             <li>
                 <a class="nav-link" href="{{ route('progress.index') }}"><i class="fas fa-chart-line"></i> <span>Data
                         Progres Proyek</span>
                 </a>
             </li>
-            <li><a class="nav-link" href="{{ route('dokumen.index') }}"><i class="fas fa-file"></i> <span>Data
-                        Document</span></a>
-            </li>
+            @if (Auth::user()->role !== 'petugas')
+                <li>
+                    <a class="nav-link" href="{{ route('dokumen.index') }}"><i class="fas fa-file"></i> <span>Data
+                            Document</span></a>
+                </li>
+            @endif
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

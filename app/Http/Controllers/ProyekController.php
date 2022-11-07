@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proyek;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -35,7 +36,8 @@ class ProyekController extends Controller
     public function create()
     {
         $modul = $this->modul;
-        return view('project.create', compact('modul'));
+        $user = User::where('role', 'petugas')->get();
+        return view('project.create', compact('modul', 'user'));
     }
 
     /**
@@ -50,16 +52,19 @@ class ProyekController extends Controller
             'required' => 'Field wajib diisi',
             'max' => 'Field tidak boleh kurang dari 8 karakter',
             'string' => 'Field hanya bisa diisi oleh text',
-            'pdf' => 'Hanya mendukung format file pdf'
+            'pdf' => 'Hanya mendukung format file pdf',
+            'integer' => 'Harus berisi data angka'
         ];
 
-        // $this->validate($request, [
-        //     'nama_proyek' => ['required', 'max:8', 'string'],
-        //     'lokasi' => ['required', 'max:8', 'string'],
-        //     'waktu_mulai' => ['required', 'date'],
-        //     'waktu_selesai' => ['required', 'date'],
-        //     'file' => ['required']
-        // ], $messages);
+        $this->validate($request, [
+            'nama_proyek' => ['required', 'min:8', 'string'],
+            'lokasi' => ['required', 'min:8', 'string'],
+            'waktu_mulai' => ['required', 'date'],
+            'waktu_selesai' => ['required', 'date'],
+            'petugas' => ['required'],
+            'anggaran' => ['integer', 'required']
+            // 'file' => ['required']
+        ], $messages);
 
         if ($request->hasFile('file')) {
             $uploadPath = public_path('uploads/files');
@@ -77,17 +82,19 @@ class ProyekController extends Controller
                 $post->lokasi = $request->lokasi;
                 $post->waktu_mulai = $request->waktu_mulai;
                 $post->waktu_selesai = $request->waktu_selesai;
-                $post->status = 'diajukan';
+                $post->status = 'proses';
                 $post->file = $rename;
-                $post->user_id  = Auth::user()->id;
-                $post->jenis = $request->jenis;
+                $post->user_id  = $request->petugas;
+                $post->anggaran = $request->anggaran;
                 $post->save();
-
-                return redirect('client/proyek');
+                toast('success', 'Berhasil menambahkan data!');
+                return redirect('data-master/proyek');
             }
-            return redirect('client/proyek');
+            toast('error', 'Gagal menambahkan data!');
+            return redirect('data-master/proyek');
         }
-        return redirect('client/proyek');
+        toast('error', 'Gagal menambahkan data!');
+        return redirect('data-master/proyek');
     }
 
     /**

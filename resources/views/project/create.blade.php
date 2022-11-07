@@ -35,7 +35,31 @@
                                                             </span>
                                                         </div>
                                                         <input type="text" name="nama_proyek"
-                                                            class="form-control float-right" id="reservation">
+                                                            class="form-control float-right @error('nama_proyek')
+                                                                is-invalid
+                                                            @enderror"
+                                                            id="reservation">
+                                                        @error('nama_proyek')
+                                                            <span class="text-sm text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anggaran</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-money-check"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="number" name="anggaran"
+                                                            class="form-control float-right @error('anggaran')
+                                                                is-invalid
+                                                            @enderror"
+                                                            id="reservation">
+                                                        @error('anggaran')
+                                                            <span class="text-sm text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -47,7 +71,13 @@
                                                             </span>
                                                         </div>
                                                         <input type="text" name="lokasi"
-                                                            class="form-control float-right" id="reservation">
+                                                            class="form-control float-right @error('lokasi')
+                                                                is-invalid
+                                                            @enderror"
+                                                            id="reservation">
+                                                        @error('lokasi')
+                                                            <span class="text-sm text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -60,7 +90,13 @@
                                                                             class="far fa-calendar"></i></span>
                                                                 </div>
                                                                 <input type="date" name="waktu_mulai"
-                                                                    class="form-control float-right" id="reservationtime">
+                                                                    class="form-control float-right @error('waktu_mulai')
+                                                                        is-invalid
+                                                                    @enderror"
+                                                                    id="reservationtime">
+                                                                @error('waktu_mulai')
+                                                                    <span class="text-sm text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -73,7 +109,13 @@
                                                                             class="far fa-calendar"></i></span>
                                                                 </div>
                                                                 <input type="date" name="waktu_selesai"
-                                                                    class="form-control float-right" id="reservationtime">
+                                                                    class="form-control float-right @error('waktu_selesai')
+                                                                        is-invalid
+                                                                    @enderror"
+                                                                    id="reservationtime">
+                                                                @error('waktu_selesai')
+                                                                    <span class="text-sm text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -81,19 +123,22 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="exampleFormControlSelect1">Example select</label>
-                                                            <select class="form-control" name="jenis"
-                                                                id="exampleFormControlSelect1" required>
-                                                                <option selected>Pilih ...</option>
-                                                                <option value="Pembangunan Jalan">Pembangunan Jalan</option>
-                                                                <option value="Pembangunan Jembatan">Pembangunan Jembatan
-                                                                </option>
-                                                                <option value="Pembangunan Gedung">Pembangunan Gedung
-                                                                </option>
-                                                                <option value="Pembangunan Saluran">Pembangunan Saluran
-                                                                </option>
-                                                                <option value="Pembangunan Waduk">Pembangunan Waduk</option>
+                                                            <label for="exampleFormControlSelect1">Penanggung Jawab</label>
+                                                            <select
+                                                                class="form-control @error('petugas')
+                                                                is-invalid
+                                                            @enderror"
+                                                                name="petugas" id="exampleFormControlSelect1" required>
+                                                                <option selected>Pilih...</option>
+                                                                @foreach ($user as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('petugas')
+                                                                <span class="text-sm text-danger">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
