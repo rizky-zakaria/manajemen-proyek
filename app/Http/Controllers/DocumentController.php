@@ -49,14 +49,16 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'required' => 'Field wajib diisi'
+            'required' => 'Field wajib diisi',
+            'mimes' => 'Format file tidak didukung',
+            'max' => 'Ukuran maksimal 2MB'
         ];
 
         $this->validate($request, [
             'proyek_id' => ['required'],
             'jenis_id' => ['required'],
             'jenis_dokumen' => ['required'],
-            'file' => ['required']
+            'file' => ['required', 'mimes:pdf|jpeg|jpg|png|docx|xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
@@ -78,15 +80,16 @@ class DocumentController extends Controller
                 $post->dokumen = $rename;
                 $post->save();
                 // dd($post);
-                toast('success', 'Berhasil menambahkan data!');
+                toast('Berhasil menambahkan data!', 'success');
                 return redirect(route($this->modul . '.index'));
             }
-            toast('error', 'Gagal menambahkan data!');
+            toast('Gagal menambahkan data!', 'error');
             return redirect(route($this->modul . '.index'));
         } else {
-            dd("gagal");
+            toast('Gagal menambahkan data!', 'error');
+            return redirect(route($this->modul . '.index'));
         }
-        toast('error', 'Gagal menambahkan data!');
+        toast('Gagal menambahkan data!', 'error');
         return redirect(route($this->modul . '.index'));
     }
 

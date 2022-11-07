@@ -53,8 +53,8 @@ class ProyekController extends Controller
             'required' => 'Field wajib diisi',
             'max' => 'Field tidak boleh kurang dari 8 karakter',
             'string' => 'Field hanya bisa diisi oleh text',
-            'pdf' => 'Hanya mendukung format file pdf',
-            'integer' => 'Harus berisi data angka'
+            'integer' => 'Harus berisi data angka',
+            'mimes' => 'Format file tidak didukung'
         ];
 
         $this->validate($request, [
@@ -63,8 +63,8 @@ class ProyekController extends Controller
             'waktu_mulai' => ['required', 'date'],
             'waktu_selesai' => ['required', 'date'],
             'petugas' => ['required'],
-            'anggaran' => ['integer', 'required']
-            // 'file' => ['required']
+            'anggaran' => ['integer', 'required'],
+            'file' => ['required', 'mimes:pdf|jpeg|jpg|png|docx|xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
@@ -88,13 +88,13 @@ class ProyekController extends Controller
                 $post->user_id  = $request->petugas;
                 $post->anggaran = $request->anggaran;
                 $post->save();
-                toast('success', 'Berhasil menambahkan data!');
+                toast('Berhasil menambahkan data!', 'success');
                 return redirect('data-master/proyek');
             }
-            toast('error', 'Gagal menambahkan data!');
+            toast('Gagal menambahkan data!', 'error');
             return redirect('data-master/proyek');
         }
-        toast('error', 'Gagal menambahkan data!');
+        toast('Gagal menambahkan data!', 'error');
         return redirect('data-master/proyek');
     }
 
@@ -138,8 +138,8 @@ class ProyekController extends Controller
             'required' => 'Field wajib diisi',
             'max' => 'Field tidak boleh kurang dari 8 karakter',
             'string' => 'Field hanya bisa diisi oleh text',
-            'pdf' => 'Hanya mendukung format file pdf',
-            'integer' => 'Harus berisi data angka'
+            'integer' => 'Harus berisi data angka',
+            'mimes' => 'Format file tidak didukung'
         ];
 
         $this->validate($request, [
@@ -148,8 +148,8 @@ class ProyekController extends Controller
             'waktu_mulai' => ['required', 'date'],
             'waktu_selesai' => ['required', 'date'],
             'petugas' => ['required'],
-            'anggaran' => ['integer', 'required']
-            // 'file' => ['required']
+            'anggaran' => ['integer', 'required'],
+            'file' => ['required', 'mimes:pdf|jpeg|jpg|png|docx|xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
