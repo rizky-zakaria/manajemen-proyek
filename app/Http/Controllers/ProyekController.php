@@ -64,7 +64,7 @@ class ProyekController extends Controller
             'waktu_selesai' => ['required', 'date'],
             'petugas' => ['required'],
             'anggaran' => ['integer', 'required'],
-            'file' => ['required', 'mimes:pdf|jpeg|jpg|png|docx|xls', 'max:2048']
+            'file' => ['required', 'mimes:pdf,jpeg,jpg,png,docx,xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
@@ -149,7 +149,7 @@ class ProyekController extends Controller
             'waktu_selesai' => ['required', 'date'],
             'petugas' => ['required'],
             'anggaran' => ['integer', 'required'],
-            'file' => ['required', 'mimes:pdf|jpeg|jpg|png|docx|xls', 'max:2048']
+            'file' => ['required', 'mimes:pdf,jpeg,jpg,png,docx,xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
