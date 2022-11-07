@@ -58,7 +58,7 @@ class DocumentController extends Controller
             'proyek_id' => ['required'],
             'jenis_id' => ['required'],
             'jenis_dokumen' => ['required'],
-            'file' => ['required', 'mimes:pdf|jpeg|jpg|png|docx|xls', 'max:2048']
+            'file' => ['required', 'mimes:pdf,jpeg,jpg,png,docx,xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
@@ -135,6 +135,14 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Dokumen::find($id);
+        $data->delete();
+        if ($data) {
+            toast('Berhasil menghapus data!', 'success');
+            return redirect(route($this->modul . '.index'));
+        }
+
+        toast('Gagal menghapus data!', 'error');
+        return redirect(route($this->modul . '.index'));
     }
 }

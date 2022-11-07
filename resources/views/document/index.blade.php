@@ -41,12 +41,13 @@
                                                     </td>
                                                     <td>
                                                         <a href="{{ asset('uploads/files/' . $item->dokumen) }}"
-                                                            class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                                                            class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                                         @if (Auth::user()->role === 'admin')
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-toggle="modal" data-target="#exampleModal">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
+                                                            <a href="javascript:;" data-toggle="modal"
+                                                                onclick="deleteData({{ $item->id }})"
+                                                                data-target="#DeleteModal" class="btn btn-sm btn-danger"><i
+                                                                    class="fas fa-fw fa-trash"></i>
+                                                            </a>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -86,8 +87,8 @@
                         <p class="text-center">Are you sure want to delete this data ?</p>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
-                        <button type="submit" name="" class="btn btn-outline-light" data-dismiss="modal"
+                        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="" class="btn btn-outline-danger" data-dismiss="modal"
                             onclick="formSubmit()">Yes, Delete</button>
                     </div>
                 </div>
