@@ -17,7 +17,9 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <h4>{{ $modul }}</h4>
-                                {{-- <a href="{{ route($modul . '.create') }}" class="btn btn-primary float-right">Tambah</a> --}}
+                                @if (Auth::user()->role === 'petugas')
+                                    <a href="{{ route($modul . '.create') }}" class="btn btn-primary float-right">Tambah</a>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -48,15 +50,29 @@
                                                     <td>
                                                         {{ $item->proyek->lokasi }}
                                                     </td>
-                                                    <td>2018-01-20</td>
+                                                    <td>
+                                                        {{ $item->persentase }}
+                                                    </td>
                                                     <td class="align-middle">
                                                         <div class="progress" data-height="4" data-toggle="tooltip"
-                                                            title="100%">
-                                                            <div class="progress-bar bg-success" data-width="100%"></div>
+                                                            title="{{ $item->persentase }}%">
+                                                            <div class="progress-bar bg-success"
+                                                                data-width="{{ $item->persentase }}%"></div>
                                                         </div>
                                                     </td>
-                                                    <td>2018-01-20</td>
-                                                    <td><a href="#" class="btn btn-secondary">Detail</a>
+                                                    <td>
+                                                        @if ($item->persentase <= 100)
+                                                            on proses
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="" class="btn btn-primary btn-sm"><i
+                                                                class="fas fa-eye"></i></a>
+                                                        @if (Auth::user()->role === 'petugas')
+                                                            <a href="{{ $modul . '.edit' }}"
+                                                                class="btn btn-sm btn-success"><i
+                                                                    class="fas fa-edit"></i></a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

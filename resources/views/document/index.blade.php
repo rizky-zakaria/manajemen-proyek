@@ -17,7 +17,9 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <h4>{{ $modul }}</h4>
-                                <a href="{{ route($modul . '.create') }}" class="btn btn-primary float-right">Tambah</a>
+                                @if (Auth::user()->role === 'admin')
+                                    <a href="{{ route($modul . '.create') }}" class="btn btn-primary float-right">Tambah</a>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -40,11 +42,12 @@
                                                     <td>
                                                         <a href="{{ asset('uploads/files/' . $item->dokumen) }}"
                                                             class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                            data-target="#exampleModal">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-
+                                                        @if (Auth::user()->role === 'admin')
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="modal" data-target="#exampleModal">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

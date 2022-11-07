@@ -134,6 +134,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $modul = $this->modul;
+        $data = User::find($id);
+        $biodata = Biodata::where('user_id', $id)->first();
+        $biodata->delete();
+        $data->delete();
+
+        if ($data) {
+            toast('Berhasil menghapus data!', 'success');
+            return redirect(route($modul . '.index'));
+        } else {
+            toast('Gagal menghapus data!', 'error');
+            return redirect(route($modul . '.index'));
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Progres;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
 
 class ProgressController extends Controller
@@ -32,7 +33,9 @@ class ProgressController extends Controller
      */
     public function create()
     {
-        //
+        $modul = $this->modul;
+        $data = Proyek::all();
+        return view('progres.create', compact('modul', 'data'));
     }
 
     /**
@@ -43,7 +46,19 @@ class ProgressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Progres;
+        $post->proyek_id = $request->proyek_id;
+        $post->progres = "Belum ada";
+        $post->persentase = 0;
+        $post->save();
+
+        if ($post) {
+            toast("Berhasil menambahkan data!", 'success');
+            return redirect(route($this->modul . '.index'));
+        } else {
+            toast('Gagal menambahkan data', 'error');
+            return redirect(route($this->modul . '.index'));
+        }
     }
 
     /**

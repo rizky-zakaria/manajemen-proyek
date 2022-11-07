@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Progres;
 use App\Models\Proyek;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -139,6 +140,18 @@ class ProyekController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proyek = Proyek::find($id);
+        $progres = Progres::where('proyek_id', $id)->first();
+        if (isset($progres->id)) {
+            $progres->delete();
+        }
+        $proyek->delete();
+        if ($proyek) {
+            toast('Berhasil menghapus data!', 'success');
+            return redirect(route($this->modul . '.index'));
+        } else {
+            toast('Gagal menghapus data!', 'error');
+            return redirect(route($this->modul . '.index'));
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
 use App\Models\JenisProyek;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,17 @@ class JenisProyekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->modul = "jenis-proyek";
+    }
+
     public function index()
     {
         $data = JenisProyek::all();
-        return view('jenisproject.index', compact('data'));
+        $modul = $this->modul;
+        return view('jenisproject.index', compact('data', 'modul'));
     }
 
     /**
@@ -92,6 +100,19 @@ class JenisProyekController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = JenisProyek::find($id);
+        $data = Dokumen::where('jenis_id', $id)->get();
+        // dd($data);
+        if (isset($data->id)) {
+            $data->delete();
+        }
+        $post->delete();
+        if ($post) {
+            toast('Berashil menghapus data!', 'success');
+            return redirect(route($this->modul . '.index'));
+        } else {
+            toast('Gagal menghapus data!', 'error');
+            return redirect(route($this->modul . '.index'));
+        }
     }
 }
