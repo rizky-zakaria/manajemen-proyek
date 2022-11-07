@@ -38,7 +38,7 @@
                                                             class="form-control float-right @error('nama_proyek')
                                                                 is-invalid
                                                             @enderror"
-                                                            id="reservation">
+                                                            id="reservation" required>
                                                         @error('nama_proyek')
                                                             <span class="text-sm text-danger">{{ $message }}</span>
                                                         @enderror
@@ -56,7 +56,7 @@
                                                             class="form-control float-right @error('anggaran')
                                                                 is-invalid
                                                             @enderror"
-                                                            id="reservation">
+                                                            id="reservation" required>
                                                         @error('anggaran')
                                                             <span class="text-sm text-danger">{{ $message }}</span>
                                                         @enderror
@@ -74,7 +74,7 @@
                                                             class="form-control float-right @error('lokasi')
                                                                 is-invalid
                                                             @enderror"
-                                                            id="reservation">
+                                                            id="reservation" required>
                                                         @error('lokasi')
                                                             <span class="text-sm text-danger">{{ $message }}</span>
                                                         @enderror
@@ -93,7 +93,7 @@
                                                                     class="form-control float-right @error('waktu_mulai')
                                                                         is-invalid
                                                                     @enderror"
-                                                                    id="reservationtime">
+                                                                    id="reservationtime" required>
                                                                 @error('waktu_mulai')
                                                                     <span class="text-sm text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -112,7 +112,7 @@
                                                                     class="form-control float-right @error('waktu_selesai')
                                                                         is-invalid
                                                                     @enderror"
-                                                                    id="reservationtime">
+                                                                    id="reservationtime" required>
                                                                 @error('waktu_selesai')
                                                                     <span class="text-sm text-danger">{{ $message }}</span>
                                                                 @enderror

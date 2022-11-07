@@ -20,13 +20,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Proyek</label>
-                                        <input type="text" class="form-control" name="jenis">
+                                        <input type="text" class="form-control" name="jenis" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Bidang</label>
-                                        <select class="form-control" name="bidang">
+                                        <select class="form-control" name="bidang" required>
                                             <option value="infrastruktur">Infrastruktur</option>
                                             <option value="layanan">Layanan Publik</option>
                                             <option value="gedung">Gedung</option>

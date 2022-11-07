@@ -40,6 +40,11 @@
                                                     <td>
                                                         <a href="{{ asset('uploads/files/' . $item->dokumen) }}"
                                                             class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                            data-target="#exampleModal">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -60,4 +65,33 @@
             </div>
         </section>
     </div>
+
+    <div id="DeleteModal" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog ">
+            <!-- Modal content-->
+            <form action="" id="deleteForm" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <p class="text-center">Are you sure want to delete this data ?</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="" class="btn btn-outline-light" data-dismiss="modal"
+                            onclick="formSubmit()">Yes, Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @include('layouts.script.delete')
 @endsection

@@ -33,7 +33,7 @@
                                             </div>
                                             <input type="text" name="nama"
                                                 class="form-control float-right @error('nama') is-invalid @enderror"
-                                                id="reservation">
+                                                id="reservation" required>
                                         </div>
                                         @error('nama')
                                             <span class="text-sm text-danger">{{ $message }}</span>
@@ -49,7 +49,7 @@
                                             </div>
                                             <input type="email" name="email"
                                                 class="form-control float-right @error('email') is-invalid @enderror"
-                                                id="reservation">
+                                                id="reservation" required>
                                         </div>
                                         @error('email')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -65,7 +65,7 @@
                                             </div>
                                             <input type="text" name="ttl"
                                                 class="form-control float-right @error('ttl') is-invalid @enderror"
-                                                id="reservation" placeholder="Gorontalo / 01 Januari 1990">
+                                                id="reservation" placeholder="Gorontalo / 01 Januari 1990" required>
                                         </div>
                                         @error('ttl')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -83,7 +83,7 @@
                                                         class="form-control float-right @error('nik')
                                                 is-invalid
                                             @enderror"
-                                                        id="reservationtime">
+                                                        id="reservationtime" required>
                                                 </div>
                                                 @error('nik')
                                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -101,7 +101,7 @@
                                                         class="form-control float-right @error('telepon')
                                                 is-invalid
                                             @enderror"
-                                                        id="reservationtime">
+                                                        id="reservationtime" required>
                                                 </div>
                                                 @error('telepon')
                                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -121,7 +121,7 @@
                                                         class="form-control float-right @error('agama')
                                                 is-invalid
                                             @enderror"
-                                                        id="reservationtime">
+                                                        id="reservationtime" required>
                                                 </div>
                                                 @error('agama')
                                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -135,7 +135,7 @@
                                                     class="form-control @error('jk')
                                                     is-invalid
                                                 @enderror"
-                                                    id="exampleFormControlSelect1">
+                                                    id="exampleFormControlSelect1" required>
                                                     <option selected>Pilih Jenis Kelamin</option>
                                                     <option value="pria">Pria</option>
                                                     <option value="wanita">Wanita</option>
@@ -159,7 +159,7 @@
                                                         class="form-control float-right @error('password')
                                                 is-invalid
                                             @enderror"
-                                                        id="reservationtime">
+                                                        id="reservationtime" required>
                                                 </div>
                                                 @error('password')
                                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -175,7 +175,7 @@
                                                                 class="fas fa-user-lock"></i></span>
                                                     </div>
                                                     <input type="password" name="password_confirmation"
-                                                        class="form-control float-right" id="reservationtime">
+                                                        class="form-control float-right" id="reservationtime" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +188,8 @@
                                                     class="form-check-input @error('role')
                                             is-invalid
                                         @enderror"
-                                                    type="radio" name="role" id="petugas" value="petugas">
+                                                    type="radio" name="role" id="petugas" value="petugas"
+                                                    required>
                                                 <label class="form-check-label" for="petugas">
                                                     Petugas Lapangan
                                                 </label>
@@ -198,7 +199,8 @@
                                                     class="form-check-input @error('role')
                                             is-invalid
                                         @enderror"
-                                                    type="radio" name="role" id="bos" value="bos">
+                                                    type="radio" name="role" id="bos" value="bos"
+                                                    required>
                                                 <label class="form-check-label" for="bos">
                                                     Kepala
                                                 </label>
@@ -214,7 +216,7 @@
                                             class="form-control @error('alamat')
                                             is-invalid
                                         @enderror"
-                                            id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            id="exampleFormControlTextarea1" rows="3" required></textarea>
                                         @error('role')
                                             <span class="text-sm text-danger">{{ $message }}</span>
                                         @enderror

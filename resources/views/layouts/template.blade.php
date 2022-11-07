@@ -74,6 +74,7 @@
         </div>
     </div>
 
+    @include('sweetalert::alert')
     <!-- General JS Scripts -->
     <script src="{{ asset('stisla/dist/assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('stisla/dist/assets/modules/popper.js') }}"></script>

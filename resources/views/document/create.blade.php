@@ -28,7 +28,7 @@
                                             class="form-control @error('proyek_id')
                                             is-invalid
                                         @enderror"
-                                            id="exampleFormControlSelect1">
+                                            id="exampleFormControlSelect1" required>
                                             <option selected>Pilih proyek</option>
                                             @foreach ($data as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_proyek }}</option>
@@ -44,7 +44,7 @@
                                             class="form-control @error('jenis_id')
                                             is-invalid
                                         @enderror"
-                                            name="jenis_id" id="exampleFormControlSelect1">
+                                            name="jenis_id" id="exampleFormControlSelect1" required>
                                             <option selected>Pilih jenis</option>
                                             @foreach ($jenis as $item)
                                                 <option value="{{ $item->id }}">{{ $item->jenis }}</option>
@@ -60,7 +60,7 @@
                                             class="form-control @error('jenis_dokumen')
                                             is-invalid
                                         @enderror"
-                                            id="exampleFormControlInput1" placeholder="RAB / DED / Laporan Akhir">
+                                            id="exampleFormControlInput1" placeholder="RAB / DED / Laporan Akhir" required>
                                         @error('jenis_dokumen')
                                             <span class="text-sm text-danger">{{ $message }}</span>
                                         @enderror
@@ -74,7 +74,7 @@
                                                 class="custom-file-input @error('file')
                                                 is-invalid
                                             @enderror"
-                                                id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required>
                                             <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
                                         </div>
                                         @error('file')
