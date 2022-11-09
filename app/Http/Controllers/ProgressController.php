@@ -25,7 +25,7 @@ class ProgressController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        $data = Progres::all();
+        $data = Progres::where('user_id', Auth::user()->id);
         return view('progres.index', compact('modul', 'data'));
     }
 
@@ -37,7 +37,9 @@ class ProgressController extends Controller
     public function create()
     {
         $modul = $this->modul;
-        $data = Proyek::all();
+        $progres = Progres::all();
+        $data = Proyek::where('user_id', Auth::user()->id)->whereNotIn('id', $progres)->get();
+        // dd($data);
         return view('progres.create', compact('modul', 'data'));
     }
 
