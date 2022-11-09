@@ -58,7 +58,7 @@ class DocumentController extends Controller
             'proyek_id' => ['required'],
             'jenis_id' => ['required'],
             'jenis_dokumen' => ['required'],
-            'file' => ['required', 'mimes:pdf,jpeg,jpg,png,docx,xls', 'max:2048']
+            // 'file' => ['required', 'mimes:pdf,jpeg,jpg,png,docx,xls', 'max:2048']
         ], $messages);
 
         if ($request->hasFile('file')) {
