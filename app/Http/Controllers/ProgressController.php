@@ -25,7 +25,8 @@ class ProgressController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        $data = Progres::where('user_id', Auth::user()->id);
+        // $data = Progres::where('user_id', Auth::user()->id)->get();
+        $data = Progres::all();
         return view('progres.index', compact('modul', 'data'));
     }
 
@@ -38,7 +39,8 @@ class ProgressController extends Controller
     {
         $modul = $this->modul;
         $progres = Progres::all();
-        $data = Proyek::where('user_id', Auth::user()->id)->whereNotIn('id', $progres)->get();
+        // $data = Proyek::where('user_id', Auth::user()->id)->whereNotIn('id', $progres)->get();
+        $data = Proyek::all();
         // dd($data);
         return view('progres.create', compact('modul', 'data'));
     }
@@ -89,8 +91,14 @@ class ProgressController extends Controller
     public function edit($id)
     {
         $data = Progres::find($id);
-        $modul = $this->modul;
-        return view('progres.edit', compact('data', 'modul'));
+        // dd($data->proyek->user_id);
+        if ($data->proyek->user_id === Auth::user()->id) {
+            $modul = $this->modul;
+            return view('progres.edit', compact('data', 'modul'));
+        } else {
+            toast('Anda bukan orang yang ditugaskan', 'wrong');
+            return redirect(route('progres.index'));
+        }
     }
 
     /**
