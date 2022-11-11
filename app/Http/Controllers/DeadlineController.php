@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use App\Models\Denda;
 use App\Models\Proyek;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class DeadlineController extends Controller
 {
@@ -22,7 +25,6 @@ class DeadlineController extends Controller
     {
         $modul = $this->modul;
         $data = Denda::all();
-        // dd();
         return view('deadline.index', compact('modul', 'data'));
     }
 
@@ -74,7 +76,20 @@ class DeadlineController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Proyek::find($id);
+        $now = strtotime(date('Y-m-d'));
+        $exp = strtotime($data->waktu_selesai);
+        $jarak = $now - $exp;
+        $hari = $jarak / 60 / 60 / 24;
+        $denda = Denda::where('proyek_id', $id)->first();
+        $jmlDenda = $denda->nominal * $hari;
+        if ($hari <= 0) {
+            $status = 'berproses';
+        } else {
+            $status = 'terlambat';
+        }
+        $modul = $this->modul;
+        return view('deadline.show', compact('data', 'modul', 'hari', 'status', 'jmlDenda'));
     }
 
     /**
@@ -109,5 +124,19 @@ class DeadlineController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function send_email($id)
+    {
+        $status = 'lambat';
+        $emailBos = User::where('role', 'bos')->first();
+        $data = Proyek::find($id);
+        $now = strtotime(date('Y-m-d'));
+        $exp = strtotime($data->waktu_selesai);
+        $jarak = $now - $exp;
+        $hari = $jarak / 60 / 60 / 24;
+        $send = Mail::to($emailBos)->send(new SendMail($hari, $data->nama_proyek, $status));
+        toast('Berhasil mengirim pesan!', 'success');
+        return redirect(route($this->modul . '.index'));
     }
 }

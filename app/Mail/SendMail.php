@@ -16,8 +16,9 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data, $pesan)
+    public function __construct($data, $pesan, $status)
     {
+        $this->status = $status;
         $this->data = $data;
         $this->pesan = $pesan;
     }
@@ -29,9 +30,15 @@ class SendMail extends Mailable
      */
     public function build()
     {
+        $status = $this->status;
         $data = $this->data;
         $pesan = $this->pesan;
-        return $this->subject('manajemenproyek@bisadong.id')
-            ->view('email.index', compact('data', 'pesan'));
+        if ($status === 'lambat') {
+            return $this->subject('manajemenproyek@bisadong.id')
+                ->view('email.lambat', compact('data', 'pesan'));
+        } else {
+            return $this->subject('manajemenproyek@bisadong.id')
+                ->view('email.index', compact('data', 'pesan'));
+        }
     }
 }

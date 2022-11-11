@@ -106,7 +106,7 @@
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Waktu Selesai</label>
+                                                        <label>Penanggung Jawab</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i
@@ -123,7 +123,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Waktu Selesai</label>
+                                                        <label>File</label>
                                                         <div class="input-group">
                                                             <a href="{{ asset('uploads/files/' . $data->file) }}"
                                                                 class="btn btn-primary">

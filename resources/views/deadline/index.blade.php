@@ -50,8 +50,15 @@
                                                             Berproses
                                                         @endif
                                                     </td>
-                                                    <td><a href="" class="btn btn-sm btn-success"><i
-                                                                class="fas fa-edit"></i></a></td>
+                                                    <td>
+                                                        <a href="{{ route($modul . '.show', $item->proyek_id) }}"
+                                                            class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                        <a href="" class="btn btn-sm btn-success"><i
+                                                                class="fas fa-edit"></i></a>
+                                                        <a href="{{ url('data-master/deadline/send-email/' . $item->proyek_id) }}"
+                                                            class="btn btn-sm btn-warning"><i
+                                                                class="fas fa-envelope"></i></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
