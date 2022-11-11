@@ -27,9 +27,8 @@
                                     <div class="form-group">
                                         <label>Bidang</label>
                                         <select class="form-control" name="bidang" required>
-                                            <option value="infrastruktur">Infrastruktur</option>
-                                            <option value="layanan">Layanan Publik</option>
-                                            <option value="gedung">Gedung</option>
+                                            <option value="konstruksi">Konstruksi</option>
+                                            <option value="non-konstruksi">Non-Konstruksi</option>
                                         </select>
                                     </div>
                                 </div>

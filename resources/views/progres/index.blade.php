@@ -31,7 +31,6 @@
                                                 </th>
                                                 <th>Nama Proyek</th>
                                                 <th>Lokasi</th>
-                                                <th>Persentase</th>
                                                 <th>Bar</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -46,18 +45,18 @@
                                                     <td>
                                                         {{ $no++ }}
                                                     </td>
-                                                    <td>{{ $item->proyek->nama_proyek }}</td>
+                                                    <td>{{ $item->nama_proyek }}</td>
                                                     <td>
-                                                        {{ $item->proyek->lokasi }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->persentase }}
+                                                        {{ $item->lokasi }}
                                                     </td>
                                                     <td class="align-middle">
-                                                        <div class="progress" data-height="4" data-toggle="tooltip"
-                                                            title="{{ $item->persentase }}%">
-                                                            <div class="progress-bar bg-success"
-                                                                data-width="{{ $item->persentase }}%"></div>
+                                                        <div class="progress" style="width: 100px">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: {{ $item->persentase }}%"
+                                                                aria-valuenow="{{ $item->persentase }}" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                                <strong class="text-dark">{{ $item->persentase }}%</strong>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -74,6 +73,9 @@
                                                             <a href="{{ url('data-master/progress/' . $item->id . '/edit') }}"
                                                                 class="btn btn-sm btn-success"><i
                                                                     class="fas fa-edit"></i></a>
+                                                            <a href="{{ url('data-master/progress/form-email/' . $item->id) }}"
+                                                                class="btn btn-sm btn-warning"><i
+                                                                    class="fas fa-envelope"></i></a>
                                                         @endif
                                                     </td>
                                                 </tr>

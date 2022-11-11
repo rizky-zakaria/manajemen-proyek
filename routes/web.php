@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeadlineController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JenisProyekController;
 use App\Http\Controllers\ProfileController;
@@ -32,5 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('data-master/proyek', ProyekController::class);
     Route::resource('data-master/dokumen', DocumentController::class);
     Route::resource('data-master/progress', ProgressController::class);
+    Route::resource('data-master/deadline', DeadlineController::class);
     Route::resource('profile', ProfileController::class);
+
+    Route::get('data-master/progress/form-email/{id}', [ProgressController::class, 'form_email']);
+    // Route::get('data-master/progress/form-email/{id}', [ProgressController::class, 'form_email']);
 });

@@ -25,8 +25,12 @@ class ProgressController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        // $data = Progres::where('user_id', Auth::user()->id)->get();
-        $data = Progres::all();
+        if (Auth::user()->role === "petugas") {
+            $data = Proyek::where('user_id', Auth::user()->id)
+                ->join('progres', 'progres.proyek_id', '=', 'proyeks.id')->get();
+        } else {
+            $data = Proyek::join('progres', 'progres.proyek_id', '=', 'proyeks.id')->get();
+        }
         return view('progres.index', compact('modul', 'data'));
     }
 
@@ -39,9 +43,8 @@ class ProgressController extends Controller
     {
         $modul = $this->modul;
         $progres = Progres::all();
-        // $data = Proyek::where('user_id', Auth::user()->id)->whereNotIn('id', $progres)->get();
-        $data = Proyek::all();
-        // dd($data);
+        // $data = Proyek::where('user_id', Auth::user()->id)->whereNotIn('proyek_id', $progres)->get();
+        $data = Proyek::doesntHave('progres')->get();
         return view('progres.create', compact('modul', 'data'));
     }
 
@@ -158,5 +161,12 @@ class ProgressController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function form_email($id)
+    {
+        $modul = $this->modul;
+        $data = Proyek::where('id', $id)->first();
+        return view('progres.form_email', compact('data', 'modul'));
     }
 }

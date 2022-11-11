@@ -28,6 +28,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Dokumen</th>
+                                                <th>Jenis Dokumen</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -38,6 +39,9 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td>
                                                         {{ $item->dokumen }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->jenis_dokumen }}
                                                     </td>
                                                     <td>
                                                         <a href="{{ asset('uploads/files/' . $item->dokumen) }}"
@@ -57,6 +61,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Dokumen</th>
+                                                <th>Jenis Dokumen</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </tfoot>

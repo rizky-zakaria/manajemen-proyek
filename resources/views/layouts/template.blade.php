@@ -94,9 +94,68 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('stisla/dist/assets/js/page/modules-datatables.js') }}"></script>
 
+    {{-- statistic --}}
+    <script src="{{ asset('stisla/dist/assets/js/chart.js') }}"></script>
     <!-- Template JS File -->
     <script src="{{ asset('stisla/dist/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('stisle/dist/assets/js/custom.js') }}"></script>
+    @if ($modul === 'home')
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"],
+                    datasets: [{
+                        label: 'Persentase Progres Tiap Bulan',
+                        data: [{{ $jan }}, {{ $feb }}, {{ $mar }},
+                            {{ $apr }}, {{ $mei }}, {{ $jun }},
+                            {{ $jul }}, {{ $ags }}, {{ $sep }},
+                            {{ $okt }}, {{ $nov }}, {{ $des }}
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    @endif
 </body>
 
 </html>

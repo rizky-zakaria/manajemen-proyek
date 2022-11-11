@@ -89,5 +89,32 @@
                 </div>
             </div>
         </section>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="width: 100%;height: 100%">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>Histori update progres</h6>
+                    </div>
+                    <div class="card-body" style="overflow: scroll">
+                        <ul class="list-group">
+                            @foreach ($his as $item)
+                                <li class="list-group-item">{{ $item->user->name }} menambahkan progres pada proyek
+                                    <b>{{ $item->proyek->nama_proyek }}</b>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

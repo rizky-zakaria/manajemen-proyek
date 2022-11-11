@@ -32,4 +32,9 @@ class Proyek extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function denda()
+    {
+        return $this->hasMany(Denda::class);
+    }
 }
