@@ -37,5 +37,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profile', ProfileController::class);
 
     Route::get('data-master/progress/form-email/{id}', [ProgressController::class, 'form_email']);
-    // Route::get('data-master/progress/form-email/{id}', [ProgressController::class, 'form_email']);
+    Route::post('data-master/progress/send-email', [ProgressController::class, 'send_email']);
 });

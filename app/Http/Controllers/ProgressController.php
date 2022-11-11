@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use App\Models\HistoryProgres;
 use App\Models\Progres;
 use App\Models\Proyek;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class ProgressController extends Controller
 {
@@ -168,5 +171,13 @@ class ProgressController extends Controller
         $modul = $this->modul;
         $data = Proyek::where('id', $id)->first();
         return view('progres.form_email', compact('data', 'modul'));
+    }
+
+    public function send_email(Request $request)
+    {
+        $emailBos = User::where('role', 'bos')->first();
+        $send = Mail::to($emailBos)->send(new SendMail($request->proyek, $request->pesan));
+        toast('Berhasil mengirim pesan!', 'success');
+        return redirect(route($this->modul . '.index'));
     }
 }
