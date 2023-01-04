@@ -177,7 +177,7 @@ class ProgressController extends Controller
     {
         $status = 'kendala';
         $emailBos = User::where('role', 'bos')->first();
-        $send = Mail::to($emailBos)->send(new SendMail($request->proyek, $request->pesan, $status));
+        $send = Mail::to($request->email)->send(new SendMail($request->proyek, $request->pesan, $status));
         toast('Berhasil mengirim pesan!', 'success');
         return redirect(route($this->modul . '.index'));
     }

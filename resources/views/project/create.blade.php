@@ -157,6 +157,33 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="jenis_proyek">Jenis Proyek</label>
+                                                            <select
+                                                                class="form-control @error('jenis_proyek')
+                                                                is-invalid
+                                                            @enderror"
+                                                                name="jenis_proyek" id="jenis_proyek" required>
+                                                                <option selected disabled>Pilih...</option>
+                                                                <option value="konstruksi" value="21"
+                                                                    data-rc="konstruksi">
+                                                                    Konstruksi</option>
+                                                                <option value="non-konstruksi" data-rc="non-konstruksi">
+                                                                    Non-Konstruksi</option>
+                                                            </select>
+                                                            @error('jenis_proyek')
+                                                                <span class="text-sm text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" id="bidang">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row" id="lainnya">
+
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -168,4 +195,91 @@
             </div>
         </section>
     </div>
+    <script>
+        var selection = document.getElementById("jenis_proyek");
+        selection.onchange = function(event) {
+            var rc = event.target.options[event.target.selectedIndex].dataset.rc;
+            $("#form").remove();
+            if (rc === "konstruksi") {
+                $("#bidang").append(
+                    `
+                    <div class="form-group" id="form">
+                    <label for="bidang_proyek">Bidang Proyek</label>
+                    <select
+                        class="form-control"
+                        name="petugas" id="bidang_proyek" required>
+                        <option selected disabled>Pilih...</option>
+                        <option value="Konstruksi Bangunan Gedung" data-rc="kbg">
+                            Konstruksi Bangunan Gedung
+                        </option>
+                        <option value="Konstruksi Rumah" data-rc="kr">
+                            Konstruksi Rumah
+                        </option>
+                        <option value="Konstruksi Perkantoran" data-rc="kp">
+                            Konstruksi Perkantoran
+                        </option>
+                        <option value="Konstruksi Perhotelan" data-rc="kh">
+                            Konstruksi Perhotelan
+                        </option>
+                        <option value="Konstruksi Drainase" data-rc="kd">
+                            Konstruksi Drainase
+                        </option>
+                        <option value="Konstruksi Jalan" data-rc="kj">
+                            Konstruksi Jalan
+                        </option>
+                        <option value="Konstruksi Jembatan" data-rc="kjb">
+                            Konstruksi Jembatan
+                        </option>
+                        <option value="Lainnya" data-rc="lain">
+                            Lainnya
+                        </option>
+                    </select>
+                </div>
+                    `
+                );
+
+            } else {
+                $("#bidang").append(
+                    `
+                    <div class="form-group" id="form">
+                    <label for="bidang_proyek">Bidang Proyek</label>
+                    <select
+                        class="form-control"
+                        name="petugas" id="bidang_proyek" required>
+                        <option selected disabled>Pilih...</option>
+                        <option value="Kajian lingkungan hidup strategis" data-rc="klhs">
+                            Kajian lingkungan hidup strategis
+                        </option>
+                        <option value="Amdal" data-rc="amdal">
+                            Amdal
+                        </option>
+                        <option value="Lainnya" data-rc="lain">
+                            Lainnya
+                        </option>
+                    </select>
+                </div>
+                    `
+                );
+            }
+        };
+
+        var selec = document.getElementById("bidang_proyek");
+        console.log(selec);
+        selec.onchange = function(event) {
+            var rnc = event.target.options[event.target.selectedIndex].dataset.rc;
+            console.log(rnc);
+            $("#ll").remove();
+            if (rnc === "lain") {
+                $("#lainnya").append(
+                    `
+                        <div class="form-group" id="ll">
+                            <label for="lainnya">Keterangan lainnya</label>
+                            <input type="text" class="form-control"
+                                id="lainnya"name="lain" required>
+                        </div>
+                    `
+                );
+            }
+        }
+    </script>
 @endsection

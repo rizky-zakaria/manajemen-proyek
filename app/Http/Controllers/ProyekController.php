@@ -24,7 +24,11 @@ class ProyekController extends Controller
 
     public function index()
     {
-        $data = Proyek::all();
+        if (Auth::user()->role !== "petugas") {
+            $data = Proyek::all();
+        } else {
+            $data = Proyek::where('user_id', Auth::user()->id)->get();
+        }
         $modul = $this->modul;
         return view('project.index', compact('data', 'modul'));
     }

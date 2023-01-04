@@ -34,6 +34,14 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="exampleFormControlInput1">Email Tujuan</label>
+                                        <input type="email" name="email" class="form-control float-right"
+                                            id="reservation">
+                                        @error('email')
+                                            <span class="text-sm text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
                                         <label for="exampleFormControlInput1">Pesan</label>
                                         <textarea name="pesan" class="form-control"></textarea>
                                         @error('nominal')

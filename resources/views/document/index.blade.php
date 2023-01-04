@@ -27,7 +27,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Dokumen</th>
+                                                <th>Nama Proyek</th>
                                                 <th>Jenis Dokumen</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -38,7 +38,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>
-                                                        {{ $item->dokumen }}
+                                                        {{ $item->nama_proyek }}
                                                     </td>
                                                     <td>
                                                         {{ $item->jenis_dokumen }}
@@ -60,7 +60,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Dokumen</th>
+                                                <th>Nama Proyek</th>
                                                 <th>Jenis Dokumen</th>
                                                 <th>Aksi</th>
                                             </tr>

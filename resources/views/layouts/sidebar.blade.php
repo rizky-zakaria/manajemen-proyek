@@ -20,7 +20,7 @@
                             Pegawai</span></a>
                 </li>
             @endif
-            @if (Auth::user()->role === 'admin')
+            @if (Auth::user()->role === '')
                 <li>
                     <a class="nav-link" href="{{ route('jenis-proyek.index') }}"><i class="fas fa-project-diagram"></i>
                         <span>Data Jenis
@@ -28,18 +28,21 @@
                     </a>
                 </li>
             @endif
-            @if (Auth::user()->role !== 'petugas')
+            @if (Auth::user()->role !== '')
                 <li>
                     <a class="nav-link" href="{{ route('proyek.index') }}"><i class="fas fa-cogs"></i> <span>Data
                             Proyek</span>
                     </a>
                 </li>
             @endif
-            <li>
-                <a class="nav-link" href="{{ route('progress.index') }}"><i class="fas fa-chart-line"></i> <span>Data
-                        Progres Proyek</span>
-                </a>
-            </li>
+            @if (Auth::user()->role === 'petugas')
+                <li>
+                    <a class="nav-link" href="{{ route('progress.index') }}"><i class="fas fa-chart-line"></i>
+                        <span>Data
+                            Progres Proyek</span>
+                    </a>
+                </li>
+            @endif
             @if (Auth::user()->role !== 'petugas')
                 <li>
                     <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
