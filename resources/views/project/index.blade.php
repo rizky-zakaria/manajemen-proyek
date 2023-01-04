@@ -20,6 +20,25 @@
                                 @if (Auth::user()->role === 'admin')
                                     <a href="{{ route($modul . '.create') }}" class="btn btn-primary float-right">Tambah</a>
                                 @endif
+                                @if (Auth::user()->role === 'petugas')
+                                    <div class="container d-flex justify-content-end">
+                                        <form action="{{ route('download') }}" method="post">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <input type="date" class="form-control" name="start">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input type="date" class="form-control" name="end">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="submit" class="btn btn-warning"><i
+                                                            class="fas fa-download"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

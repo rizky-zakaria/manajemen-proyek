@@ -212,4 +212,11 @@ class ProyekController extends Controller
             return redirect(route($this->modul . '.index'));
         }
     }
+
+    public function downloadByDate(Request $request)
+    {
+        $data = Proyek::whereBetween('waktu_mulai', [$request->start, $request->end])->get();
+        // dd($data);
+        return view('project.download', compact('data'));
+    }
 }
