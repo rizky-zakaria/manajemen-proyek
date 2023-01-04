@@ -53,6 +53,7 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $messages = [
             'required' => 'Field wajib diisi',
             'max' => 'Field tidak boleh kurang dari 8 karakter',
@@ -89,6 +90,8 @@ class ProyekController extends Controller
                 $post->waktu_selesai = $request->waktu_selesai;
                 $post->status = 'proses';
                 $post->file = $rename;
+                $post->jenis = $request->jenis_proyek;
+                $post->bidang = $request->jenis;
                 $post->user_id  = $request->petugas;
                 $post->anggaran = $request->anggaran;
                 $post->save();

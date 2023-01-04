@@ -204,10 +204,10 @@
                 $("#bidang").append(
                     `
                     <div class="form-group" id="form">
-                    <label for="bidang_proyek">Bidang Proyek</label>
+                    <label for="jenis_proyek">Bidang Proyek</label>
                     <select
                         class="form-control"
-                        name="petugas" id="bidang_proyek" required>
+                        name="jenis" id="jenis_proyek" required>
                         <option selected disabled>Pilih...</option>
                         <option value="Konstruksi Bangunan Gedung" data-rc="kbg">
                             Konstruksi Bangunan Gedung
@@ -245,7 +245,7 @@
                     <label for="bidang_proyek">Bidang Proyek</label>
                     <select
                         class="form-control"
-                        name="petugas" id="bidang_proyek" required>
+                        name="bidang" id="bidang_proyek" required>
                         <option selected disabled>Pilih...</option>
                         <option value="Kajian lingkungan hidup strategis" data-rc="klhs">
                             Kajian lingkungan hidup strategis
