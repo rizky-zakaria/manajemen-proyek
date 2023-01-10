@@ -45,10 +45,9 @@
                                             is-invalid
                                         @enderror"
                                             name="jenis_id" id="exampleFormControlSelect1" required>
-                                            <option selected>Pilih jenis</option>
-                                            @foreach ($jenis as $item)
-                                                <option value="{{ $item->id }}">{{ $item->jenis }}</option>
-                                            @endforeach
+                                            <option selected disabled>Pilih jenis</option>
+                                            <option value="konstruksi">Konstruksi</option>
+                                            <option value="non-konstruksi">Non-Konstruksi</option>
                                         </select>
                                         @error('jenis_id')
                                             <span class="text-sm text-danger">{{ $message }}</span>
