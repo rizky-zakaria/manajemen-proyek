@@ -75,7 +75,7 @@ class DocumentController extends Controller
             if ($file->move($uploadPath, $rename)) {
                 $post = new Dokumen;
                 $post->proyek_id = $request->proyek_id;
-                $post->jenis_id = $request->jenis_id;
+                $post->jenis = $request->jenis_id;
                 $post->jenis_dokumen = $request->jenis_dokumen;
                 $post->dokumen = $rename;
                 $post->save();
