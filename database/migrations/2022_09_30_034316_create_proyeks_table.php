@@ -25,6 +25,7 @@ class CreateProyeksTable extends Migration
             $table->integer('anggaran');
             $table->string('jenis');
             $table->string('bidang');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

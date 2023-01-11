@@ -69,6 +69,7 @@ class ProyekController extends Controller
             'waktu_selesai' => ['required', 'date'],
             'petugas' => ['required'],
             'anggaran' => ['integer', 'required'],
+            'keterangan' => ['required']
             // 'file' => ['required', 'mimes:pdf,jpeg,jpg,png,docx,xls', 'max:2048']
         ], $messages);
 
@@ -94,6 +95,7 @@ class ProyekController extends Controller
                 $post->bidang = $request->jenis;
                 $post->user_id  = $request->petugas;
                 $post->anggaran = $request->anggaran;
+                $post->keterangan = $request->keterangan;
                 $post->save();
                 toast('Berhasil menambahkan data!', 'success');
                 return redirect('data-master/proyek');

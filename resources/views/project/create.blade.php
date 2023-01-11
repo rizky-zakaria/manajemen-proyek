@@ -184,6 +184,10 @@
                                                 <div class="form-row" id="lainnya">
 
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Keterangan</label>
+                                                    <textarea name="keterangan" class="form-control" id="exampleFormControlTextarea1" rows="3" required>-</textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
