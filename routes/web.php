@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('data-master/proyek/downloadByDate', [ProyekController::class, 'downloadByDate'])->name('download');
     Route::post('form-input/gantt', [ProyekController::class, 'ganttPost']);
     Route::get('data-master/proyek/gantt-chart/gantt-by-project/{id}', [ProyekController::class, 'ganttByProject']);
+    Route::get('data-master/proyek/hapus-progres/{id}', [ProyekController::class, 'hapusProgress']);
     Route::get('data-master/proyek/update-progres/{id}', [ProyekController::class, 'formUpdateProgres']);
     Route::post('data-master/proyek/update-percent-progres', [ProyekController::class, 'updateProgres']);
 });

@@ -68,10 +68,6 @@
                                     aria-labelledby="nav-profile-tab">
                                     <div class="card-header d-flex justify-content-between">
                                         <h4>Task List</h4>
-                                        @if (Auth::user()->role === 'faskes')
-                                            <a href="{{ route('obat.create') }}"
-                                                class="btn btn-primary float-right">Tambah</a>
-                                        @endif
                                     </div>
                                     <div class="card-body">
                                         <form action="{{ url('form-input/gantt') }}" method="post">
@@ -185,6 +181,8 @@
                                                                 <a href="{{ url('data-master/proyek/update-progres/' . $item->task_id) }}"
                                                                     class="btn btn-sm btn-primary">Update
                                                                     Progres</a>
+                                                                <a href="{{ url('data-master/proyek/hapus-progres/' . $item->task_id) }}"
+                                                                    class="btn btn-sm btn-danger">Hapus</a>
                                                             </td>
                                                         </tr>
                                                     @endforeach

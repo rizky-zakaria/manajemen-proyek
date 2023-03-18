@@ -293,4 +293,12 @@ class ProyekController extends Controller
         $modul = $this->modul;
         return view('project.detail', compact('modul'));
     }
+
+    public function hapusProgress($id)
+    {
+        $data = Gantt::where('task_id', $id)->delete();
+        // $data->delete();
+        toast('berhasil menghapus data', 'success');
+        return redirect()->back();
+    }
 }
