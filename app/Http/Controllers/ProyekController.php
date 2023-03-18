@@ -129,7 +129,7 @@ class ProyekController extends Controller
         $kanbanDone = Gantt::where('project_id', $id)
             ->where('percent', 100)
             ->get();
-        $file = Dokumen::where('proyek_id', $id)->get();
+        $file = Dokumen::where('proyek_id', $id)->first();
         return view('project.show', compact('data', 'modul', 'timeline', 'bulan', 'kanbanToDo', 'kanbanInPro', 'kanbanDone', 'file', 'id'));
     }
 

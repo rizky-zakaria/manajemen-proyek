@@ -262,37 +262,9 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped" id="table-1">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>File</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $no = 1; ?>
-                                                    @foreach ($file as $item)
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $item->dokumen }}</td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-primary btn-sm"
-                                                                    data-toggle="modal" data-target="#exampleModal">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>File</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            <iframe src="{{ asset('uploads/files/' . $data->file) }}" width="100%"
+                                                height="500px">
+                                            </iframe>
                                         </div>
                                     </div>
                                 </div>
