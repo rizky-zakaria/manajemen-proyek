@@ -13,6 +13,10 @@
             <li class="dropdown">
                 <a href="{{ url('home') }}" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
             </li>
+            <li class="dropdown">
+                <a href="{{ url('kalender-event') }}" class="nav-link"><i class="fas fa-calendar"></i><span>Kalender /
+                        Event</span></a>
+            </li>
             <li class="menu-header">Data Master </li>
             @if (Auth::user()->role !== 'petugas')
                 <li>

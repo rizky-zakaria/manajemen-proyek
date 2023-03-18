@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b74207ed60683b71685391c6cd2a976",
+    "content-hash": "78f5fb4c02fc5bf334abe0bbdb0edb75",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -3125,6 +3125,43 @@
                 }
             ],
             "time": "2022-05-28T13:28:03+00:00"
+        },
+        {
+            "name": "swatkins/laravel-gantt",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swatkins/laravel-gantt.git",
+                "reference": "74a9d800e7af6441a7c492e22e8be648941ee7c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swatkins/laravel-gantt/zipball/74a9d800e7af6441a7c492e22e8be648941ee7c1",
+                "reference": "74a9d800e7af6441a7c492e22e8be648941ee7c1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Swatkins\\LaravelGantt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Scott Watkins",
+                    "email": "scott@swatkins.me"
+                }
+            ],
+            "description": "Laravel package to display items within a Gantt Chart.",
+            "support": {
+                "issues": "https://github.com/swatkins/laravel-gantt/issues",
+                "source": "https://github.com/swatkins/laravel-gantt/tree/master"
+            },
+            "time": "2016-10-09T01:32:27+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

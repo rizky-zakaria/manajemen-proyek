@@ -85,6 +85,11 @@
                                                                     class="fas fa-fw fa-trash"></i>
                                                             </a>
                                                         @endif
+                                                        <a href="{{ route('proyek.detail', $item->id) }}"
+                                                            class="btn btn-warning btn-sm"><i class="fas fa-chart-bar"></i>
+                                                        </a>
+                                                        <a href="{{ url('data-master/proyek/gantt-chart/' . $item->id) }}"
+                                                            class="btn btn-sm btn-primary">Gantt-chart</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

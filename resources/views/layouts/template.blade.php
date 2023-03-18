@@ -10,18 +10,24 @@
     <link rel="stylesheet" href="{{ asset('stisla/dist/assets/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('stisla/dist/assets/modules/fontawesome/css/all.min.css') }}">
 
+
+    <link href="{{ asset('timeline/dist/css/timeline.min.css') }}" rel="stylesheet">
+
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('stisla/dist/assets/modules/datatables/datatables.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('stisla/dist/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('stisla/dist/assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.css' rel='stylesheet' />
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('stisla/dist/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('stisla/dist/assets/css/components.css') }}">
+
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -98,7 +104,7 @@
     <script src="{{ asset('stisla/dist/assets/js/chart.js') }}"></script>
     <!-- Template JS File -->
     <script src="{{ asset('stisla/dist/assets/js/scripts.js') }}"></script>
-    <script src="{{ asset('stisle/dist/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('stisla/dist/assets/js/custom.js') }}"></script>
     @if ($modul === 'home')
         <script>
             var ctx = document.getElementById("myChart").getContext('2d');
@@ -156,6 +162,7 @@
             });
         </script>
     @endif
+    @stack('js')
 </body>
 
 </html>

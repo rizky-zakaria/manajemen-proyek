@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
+use App\Models\Gantt;
 use App\Models\Progres;
 use App\Models\Proyek;
 use App\Models\User;
@@ -116,8 +118,72 @@ class ProyekController extends Controller
     public function show($id)
     {
         $data = Proyek::find($id);
+        $timeline = Gantt::where('project_id', $id)->get();
         $modul = $this->modul;
-        return view('project.show', compact('data', 'modul'));
+        $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $kanbanToDo = Gantt::where(['project_id' => $id, 'percent' => 0])->get();
+        $kanbanInPro = Gantt::where('project_id', $id)
+            ->where('percent', '<', 100)
+            ->where('percent', '>', 0)
+            ->get();
+        $kanbanDone = Gantt::where('project_id', $id)
+            ->where('percent', 100)
+            ->get();
+        $file = Dokumen::where('proyek_id', $id)->get();
+        return view('project.show', compact('data', 'modul', 'timeline', 'bulan', 'kanbanToDo', 'kanbanInPro', 'kanbanDone', 'file', 'id'));
+    }
+
+    public function formUpdateProgres($id)
+    {
+        $data = Gantt::where('task_id', $id)->first();
+        $modul = $this->modul;
+        return view('project.form-update-progres', compact('data', 'modul'));
+    }
+
+    public function updateProgres(Request $request)
+    {
+        $post = Gantt::where('task_id', $request->id)->update(['percent' => $request->progres]);
+
+        if ($post) {
+            toast('Berhasil Mengubah Data!', 'success');
+        } else {
+            toast('Gagal Mengubah Data!', 'error');
+        }
+        return redirect(route('proyek.index'));
+    }
+
+    public function gantt($id)
+    {
+        $data = Gantt::where('project_id', $id)->get();
+        $modul = $this->modul;
+        // dd($data);
+        return view('project.gantt', compact('data', 'id', 'modul'));
+    }
+
+    public function ganttByProject($id)
+    {
+        $data = Gantt::where('project_id', $id)->get();
+        return response()->json($data);
+    }
+
+    public function ganttPost(Request $request)
+    {
+        $post = Gantt::create([
+            'task_id' => date('dmYHis'),
+            'task_name' => $request->nama,
+            'resource' => $request->resource,
+            'tgl_mulai' => $request->tanggal_mulai,
+            'bln_mulai' => $request->bulan_mulai,
+            'thn_mulai' => $request->tahun_mulai,
+            'tgl_selesai' => $request->tanggal_selesai,
+            'bln_selesai' => $request->bulan_selesai,
+            'thn_selesai' => $request->tahun_selesai,
+            'duration' => null,
+            'percent' => 0,
+            'dependencies' => null,
+            'project_id' => $request->id
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -220,5 +286,11 @@ class ProyekController extends Controller
         $data = Proyek::whereBetween('waktu_mulai', [$request->start, $request->end])->get();
         // dd($data);
         return view('project.download', compact('data'));
+    }
+
+    public function detail($id)
+    {
+        $modul = $this->modul;
+        return view('project.detail', compact('modul'));
     }
 }
