@@ -21,6 +21,7 @@
                         <h5>Gantt Chart</h5>
                     </div>
                     <div class="card-body" id="bd-body">
+                        <h6>Task Name</h6>
                         <div id="chart_div"></div>
                     </div>
                 </div>

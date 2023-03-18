@@ -100,7 +100,9 @@ class DeadlineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modul = $this->modul;
+        $data = Denda::join('proyeks', 'proyeks.id', '=', 'dendas.id')->first();
+        return view('deadline.edit', compact('data', 'modul', 'id'));
     }
 
     /**
@@ -112,7 +114,15 @@ class DeadlineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Denda::find($id);
+        $data->nominal = $request->nominal;
+        $data->update();
+        if ($data) {
+            toast('Berhasil mengubah data!', 'success');
+        } else {
+            toast('Gagal mengubah data!', 'success');
+        }
+        return redirect(route('deadline.index'));
     }
 
     /**
