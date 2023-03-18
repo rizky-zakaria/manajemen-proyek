@@ -299,17 +299,7 @@
                                 <div class="tab-pane fade show" id="nav-detail" role="tabpanel"
                                     aria-labelledby="nav-home-tab">
                                     <div class="card-header d-flex justify-content-between">
-                                        <h4>Distribusi Obat</h4>
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" id="nik"
-                                                    placeholder="nomor registrasi">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" class="btn btn-success" id="btnCari"
-                                                    onclick="cari()"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
+                                        <h4>Detail</h4>
                                     </div>
                                     <div class="card-body" id="pasien">
                                         <div class="table-responsive">
