@@ -23,9 +23,9 @@ class CreateGanttsTable extends Migration
             $table->integer('tgl_selesai');
             $table->integer('bln_selesai');
             $table->integer('thn_selesai');
-            $table->integer('duration', null);
+            $table->integer('duration')->nullable();
             $table->integer('percent');
-            $table->string('dependencies', null);
+            $table->string('dependencies')->nullable();
             $table->integer('project_id');
             $table->timestamps();
         });
