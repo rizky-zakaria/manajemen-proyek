@@ -27,9 +27,10 @@
                                 <button class="nav-link" id="nav-profile-tab" data-toggle="tab"
                                     data-target="#nav-kanban" type="button" role="tab" aria-controls="nav-profile"
                                     aria-selected="false">Task Kanban</button>
-                                <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-files"
-                                    type="button" role="tab" aria-controls="nav-profile"
-                                    aria-selected="false">Files</button>
+                                {{-- INI YANG KITA ADA COMENT --}}
+                                {{-- <button class="nav-link" id="nav-profile-tab" data-toggle="tab"
+                                    data-target="#nav-files" type="button" role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">Files</button> --}}
                                 <button class="nav-link" id="nav-profile-tab" data-toggle="tab"
                                     data-target="#nav-detail" type="button" role="tab" aria-controls="nav-profile"
                                     aria-selected="false">Details</button>
@@ -181,8 +182,8 @@
                                                     </td>
                                                     <td>{{ $item->percent }}%</td>
                                                     <td>
+                                                        {{-- INI KITA ADA TAMBAH --}}
                                                         @if (auth()->user()->role == 'petugas')
-
                                                         <a href="{{ url('data-master/proyek/update-progres/' . $item->task_id) }}"
                                                             class="btn btn-sm btn-primary">Update
                                                             Progres</a>
@@ -259,7 +260,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-files" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            {{-- <div class="tab-pane fade" id="nav-files" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
                                 <div class="card-header d-flex justify-content-between">
                                     <h4>File</h4>
                                 </div>
@@ -270,7 +272,7 @@
                                         </iframe>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="tab-pane fade show" id="nav-detail" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                 <div class="card-header d-flex justify-content-between">
