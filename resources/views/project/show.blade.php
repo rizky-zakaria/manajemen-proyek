@@ -181,7 +181,7 @@
                                                     </td>
                                                     <td>{{ $item->percent }}%</td>
                                                     <td>
-                                                        @if (auth()->user()->role->role == 'petugas')
+                                                        @if (auth()->user()->role == 'petugas')
 
                                                         <a href="{{ url('data-master/proyek/update-progres/' . $item->task_id) }}"
                                                             class="btn btn-sm btn-primary">Update
