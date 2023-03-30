@@ -19,52 +19,51 @@
             </li>
             <li class="menu-header">Data Master </li>
             @if (Auth::user()->role !== 'petugas')
-                <li>
-                    <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data
-                            Pegawai</span></a>
-                </li>
+            <li>
+                <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data
+                        Pegawai</span></a>
+            </li>
             @endif
             @if (Auth::user()->role === '')
-                <li>
-                    <a class="nav-link" href="{{ route('jenis-proyek.index') }}"><i class="fas fa-project-diagram"></i>
-                        <span>Data Jenis
-                            Proyek</span>
-                    </a>
-                </li>
+            <li>
+                <a class="nav-link" href="{{ route('jenis-proyek.index') }}"><i class="fas fa-project-diagram"></i>
+                    <span>Data Jenis
+                        Proyek</span>
+                </a>
+            </li>
             @endif
             @if (Auth::user()->role !== '')
-                <li>
-                    <a class="nav-link" href="{{ route('proyek.index') }}"><i class="fas fa-cogs"></i> <span>Data
-                            Proyek</span>
-                    </a>
-                </li>
+            <li>
+                <a class="nav-link" href="{{ route('proyek.index') }}"><i class="fas fa-cogs"></i> <span>Data
+                        Proyek</span>
+                </a>
+            </li>
             @endif
             @if (Auth::user()->role === 'petugas')
-                <li>
-                    <a class="nav-link" href="{{ route('progress.index') }}"><i class="fas fa-chart-line"></i>
-                        <span>Data
-                            Progres Proyek</span>
-                    </a>
-                </li>
+            <li>
+                <a class="nav-link" href="{{ route('progress.index') }}"><i class="fas fa-chart-line"></i>
+                    <span>Data
+                        Progres Proyek</span>
+                </a>
+            </li>
             @endif
-            @if (Auth::user()->role !== 'petugas')
-                <li>
-                    <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
-                            Proyek</span></a>
-                </li>
-                <li>
-                    <a class="nav-link" href="{{ route('dokumen.index') }}"><i class="fas fa-file"></i> <span>Data
-                            Document</span></a>
-                </li>
-            @endif
+            {{-- @if (Auth::user()->role !== 'petugas')
+            <li>
+                <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
+                        Proyek</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('dokumen.index') }}"><i class="fas fa-file"></i> <span>Data
+                        Document</span></a>
+            </li>
+            @endif --}}
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             {{-- <a href="https://getstisla.com/docs" class="btn btn-danger btn-lg btn-block btn-icon-split">
                 <i class="fas fa-power-off"></i> Logout
             </a> --}}
-            <a class="btn btn-danger btn-lg btn-block btn-icon-split" href=" {{ route('logout') }} "
-                onclick="event.preventDefault();
+            <a class="btn btn-danger btn-lg btn-block btn-icon-split" href=" {{ route('logout') }} " onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
