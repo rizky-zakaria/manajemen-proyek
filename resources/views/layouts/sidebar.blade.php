@@ -56,12 +56,12 @@
                 <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
                         Proyek</span></a>
             </li> --}}
-            @if (Auth::user()->role !== 'petugas')
+            {{-- @if (Auth::user()->role !== 'petugas')
                 <li>
                     <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
                             Proyek</span></a>
                 </li>
-            @endif
+            @endif --}}
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
