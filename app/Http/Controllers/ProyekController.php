@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokumen;
 use App\Models\Gantt;
+use App\Models\Pesan;
 use App\Models\Progres;
 use App\Models\Proyek;
 use App\Models\User;
@@ -32,6 +33,18 @@ class ProyekController extends Controller
             $data = Proyek::where('user_id', Auth::user()->id)->get();
         }
         $modul = $this->modul;
+        if (Auth::user()->role == 'petugas') {
+            $cek = Pesan::where('user_id', Auth::user()->id)
+                ->where('status', 'aktif')
+                ->get();
+            if ($cek) {
+                for ($i = 0; $i < count($cek); $i++) {
+                    $ubah = Pesan::find($cek->id);
+                    $ubah->status = 'non-aktif';
+                    $ubah->update();
+                }
+            }
+        }
         return view('project.index', compact('data', 'modul'));
     }
 
@@ -99,6 +112,13 @@ class ProyekController extends Controller
                 $post->anggaran = $request->anggaran;
                 $post->keterangan = $request->keterangan;
                 $post->save();
+
+                Pesan::create([
+                    'user_id' => $request->petugas,
+                    'proyek_id' => $post->id,
+                    'status' => 'aktif'
+                ]);
+
                 toast('Berhasil menambahkan data!', 'success');
                 return redirect('data-master/proyek');
             }

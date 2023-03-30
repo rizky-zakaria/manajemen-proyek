@@ -9,6 +9,8 @@ use App\Models\Progres;
 use App\Models\Proyek;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -50,6 +52,9 @@ class HomeController extends Controller
         $des = count(Progres::where('created_at', 'LIKE', '%' . date('Y-') . '12%')->get());
         $his = HistoryProgres::offset(0)->limit(10)->get();
         // dd($his);
+        if (Auth::user()->role == 'petugas') {
+            Alert::info('Informasi', 'Anda Memiliki Satu Proyek Baru');
+        }
         return view('home', compact('title', 'dokumen', 'user', 'proyek', 'jenis', 'jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'ags', 'sep', 'okt', 'nov', 'des', 'his', 'modul'));
     }
 }
