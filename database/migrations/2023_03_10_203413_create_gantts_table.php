@@ -26,8 +26,10 @@ class CreateGanttsTable extends Migration
             $table->integer('duration')->nullable();
             $table->integer('percent');
             $table->string('dependencies')->nullable();
-            $table->integer('project_id');
+            $table->unsignedBigInteger('project_id');
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('proyeks')->onDelete('cascade');
         });
     }
 

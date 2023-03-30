@@ -15,7 +15,7 @@ class CreateProyeksTable extends Migration
     {
         Schema::create('proyeks', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('nama_proyek');
             $table->string('lokasi');
             $table->string('waktu_mulai');
@@ -27,6 +27,8 @@ class CreateProyeksTable extends Migration
             $table->string('bidang');
             $table->text('keterangan');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

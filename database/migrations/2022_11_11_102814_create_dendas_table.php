@@ -15,9 +15,11 @@ class CreateDendasTable extends Migration
     {
         Schema::create('dendas', function (Blueprint $table) {
             $table->id();
-            $table->integer('proyek_id');
+            $table->unsignedBigInteger('proyek_id');
             $table->integer('nominal');
             $table->timestamps();
+
+            $table->foreign('proyek_id')->references('id')->on('proyeks')->onDelete('cascade');
         });
     }
 

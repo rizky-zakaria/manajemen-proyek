@@ -46,15 +46,15 @@
                             Progres Proyek</span>
                     </a>
                 </li>
+                <li>
+                    <a class="nav-link" href="{{ route('dokumen.index') }}"><i class="fas fa-file"></i> <span>Data
+                            Document</span></a>
+                </li>
             @endif
             @if (Auth::user()->role !== 'petugas')
                 <li>
                     <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
                             Proyek</span></a>
-                </li>
-                <li>
-                    <a class="nav-link" href="{{ route('dokumen.index') }}"><i class="fas fa-file"></i> <span>Data
-                            Document</span></a>
                 </li>
             @endif
         </ul>

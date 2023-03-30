@@ -15,11 +15,14 @@ class CreateHistoryProgresTable extends Migration
     {
         Schema::create('history_progres', function (Blueprint $table) {
             $table->id();
-            $table->integer('proyek_id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('proyek_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('bukti');
             $table->text('keterangan');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('proyek_id')->references('id')->on('proyeks')->onDelete('cascade');
         });
     }
 

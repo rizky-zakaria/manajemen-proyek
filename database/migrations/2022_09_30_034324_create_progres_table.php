@@ -15,10 +15,12 @@ class CreateProgresTable extends Migration
     {
         Schema::create('progres', function (Blueprint $table) {
             $table->id();
-            $table->integer('proyek_id');
+            $table->unsignedBigInteger('proyek_id');
             $table->string('progres');
             $table->integer('persentase');
             $table->timestamps();
+
+            $table->foreign('proyek_id')->references('id')->on('proyeks')->onDelete('cascade');
         });
     }
 

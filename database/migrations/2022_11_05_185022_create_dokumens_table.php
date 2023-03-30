@@ -15,11 +15,13 @@ class CreateDokumensTable extends Migration
     {
         Schema::create('dokumens', function (Blueprint $table) {
             $table->id();
-            $table->integer('proyek_id');
+            $table->unsignedBigInteger('proyek_id');
             $table->string('jenis');
             $table->string('jenis_dokumen');
             $table->string('dokumen');
             $table->timestamps();
+
+            $table->foreign('proyek_id')->references('id')->on('proyeks')->onDelete('cascade');
         });
     }
 
