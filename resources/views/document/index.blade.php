@@ -46,13 +46,17 @@
                                                     <td>
                                                         {{-- <a href="{{ asset('uploads/files/' . $item->dokumen) }}"
                                                     class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a> --}}
-                                                        <iframe src="{{ asset('uploads/files/' . $item->dokumen) }}"
+                                                        {{-- <iframe src="{{ asset('uploads/files/' . $item->dokumen) }}"
                                                             width="100%" height="500px">
-                                                        </iframe>
+                                                        </iframe> --}}
+                                                        <a href="{{ asset('uploads/files/' . $item->dokumen) }}"
+                                                            class="btn btn-sm btn-warning">
+                                                            <i class="fas fa-file"></i>
+                                                        </a>
                                                         @if (Auth::user()->role === 'admin')
                                                             <a href="javascript:;" data-toggle="modal"
                                                                 onclick="deleteData({{ $item->id }})"
-                                                                data-target="#DeleteModal" class="btn btn-sm btn-danger"><i
+                                                                data-target="#DeleteModal" class="btn btn-danger"><i
                                                                     class="fas fa-fw fa-trash"></i>
                                                             </a>
                                                         @endif
