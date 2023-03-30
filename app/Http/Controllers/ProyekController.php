@@ -39,7 +39,7 @@ class ProyekController extends Controller
                 ->get();
             if ($cek) {
                 for ($i = 0; $i < count($cek); $i++) {
-                    $ubah = Pesan::find($cek->id);
+                    $ubah = Pesan::find($cek[$i]->id);
                     $ubah->status = 'non-aktif';
                     $ubah->update();
                 }
