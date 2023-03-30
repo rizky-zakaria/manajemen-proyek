@@ -39,7 +39,7 @@
                     </a>
                 </li>
             @endif
-            @if (Auth::user()->role === 'petugas')
+            @if (Auth::user()->role !== 'admin')
                 <li>
                     <a class="nav-link" href="{{ route('progress.index') }}"><i class="fas fa-chart-line"></i>
                         <span>Data
