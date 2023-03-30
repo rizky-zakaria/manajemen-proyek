@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokumen;
 use App\Models\HistoryProgres;
 use App\Models\JenisProyek;
+use App\Models\Pesan;
 use App\Models\Progres;
 use App\Models\Proyek;
 use App\Models\User;
@@ -53,7 +54,12 @@ class HomeController extends Controller
         $his = HistoryProgres::offset(0)->limit(10)->get();
         // dd($his);
         if (Auth::user()->role == 'petugas') {
-            Alert::info('Informasi', 'Anda Memiliki Satu Proyek Baru');
+            $cek = Pesan::where('user_id', Auth::user()->id)
+                ->where('status', 'aktif')
+                ->get();
+            if ($cek) {
+                Alert::info('Informasi', 'Anda Memiliki ' . count($cek) . ' Proyek Baru!');
+            }
         }
         return view('home', compact('title', 'dokumen', 'user', 'proyek', 'jenis', 'jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'ags', 'sep', 'okt', 'nov', 'des', 'his', 'modul'));
     }
