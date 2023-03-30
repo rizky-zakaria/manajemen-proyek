@@ -23,7 +23,7 @@ class DocumentController extends Controller
     public function index()
     {
         $modul = $this->modul;
-        $data = Dokumen::join('proyeks', 'proyeks.id', '=', 'dokumens.proyek_id')->get(['dokumens.id', 'proyeks.nama_proyek', 'jenis_dokumen']);
+        $data = Dokumen::join('proyeks', 'proyeks.id', '=', 'dokumens.proyek_id')->get(['dokumens.id', 'proyeks.nama_proyek', 'jenis_dokumen', 'dokumens.dokumen']);
         return view('document.index', compact('modul', 'data'));
     }
 
