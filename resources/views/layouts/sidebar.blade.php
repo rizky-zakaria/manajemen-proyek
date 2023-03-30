@@ -51,6 +51,11 @@
                             Document</span></a>
                 </li>
             @endif
+
+            {{-- <li>
+                <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
+                        Proyek</span></a>
+            </li> --}}
             @if (Auth::user()->role !== 'petugas')
                 <li>
                     <a class="nav-link" href="{{ route('deadline.index') }}"><i class="fas fa-bell"></i> <span>Deadline
